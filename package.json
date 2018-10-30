@@ -1,6 +1,6 @@
 {
   "name": "@chrissoft/zipcode-tw-react",
-  "version": "0.0.1-beta1",
+  "version": "0.0.1-beta2",
   "description": "",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -9,7 +9,7 @@
     "build": "node ./scripts/build.js",
     "start": "node ./scripts/start.js",
     "compile": "./node_modules/.bin/babel es -d lib",
-    "release": "./node_modules/.bin/babel es -d lib && npm publish"
+    "release": "./node_modules/.bin/babel es -d lib && npm publish --access=public"
   },
   "dependencies": {
     "es6bindall": "0.0.9",

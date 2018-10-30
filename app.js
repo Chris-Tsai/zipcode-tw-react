@@ -11,15 +11,13 @@ class ComponentTest extends React.Component {
   constructor() {
     super();
     this.state = {
-      show: false,
-      districtName: 'districtA',
-      districtValue: 'ddd',
       displayType: 'text',
-      countyName: 'cccc',
-      countyValue: '222',
-      zipCodeName: 'zip',
+      countyName: 'county',
+      countyValue: '',
+      districtName: 'district',
+      districtValue: '',
+      zipCodeName: 'zipCode',
       zipCodeValue: '',
-
     };
     es6BindAll(this, ['handleClick', 'handleCountyChange', 'handleDistrictChange'
       , 'handleZipCodeChange', 'handleZipCodeBlur']);
@@ -53,11 +51,8 @@ class ComponentTest extends React.Component {
 
   render() {
 
-    let countyOptions= ["111","222","333","444"];
-    let districtOptions= ["aaa","bbb","ccc","ddd"];
     return (
         <div style={{width: "400px"}}>
-
           <br/>
           <ZipCodeTW displayType={this.state.displayType}
           countyFieldName={this.state.countyName}
