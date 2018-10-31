@@ -28,9 +28,37 @@ this.state = {
           districtValue={this.state.districtValue}
           zipCodeFieldName={this.state.zipCodeName}
           zipCodeValue={this.state.zipCodeValue}
+          countyClass=""
+          countyStyle=""
+          districtClass=""
+          districtStyle=""
+          zipClass=""
+          zipStyle=""
+          zipCodePlaceholder=""
           handleChangeCounty={this.handleCountyChange}
           handleChangeDistrict={this.handleDistrictChange}
           handleChangeZipCode={this.handleZipCodeChange}
           handleBlurZipCode={this.handleZipCodeBlur}
 />
 ```
+
+## Prop
+
+####Field
+Name | Type | Default | Description
+--- | --- | --- | ---
+displayType| one of: 'text', 'display' | 'text' | 
+countyFieldName | string | |
+countyValue | string | |
+districtFieldName | string | |
+districtValue | string | |
+zipCodeFieldName | string | |
+zipCodeValue | string | |
+
+####Method
+Name | Return | Description
+---  | --- | ---
+handleChangeCounty | {county, district, zipCode}
+handleChangeDistrict | {district, zipCode}
+handleChangeZipCode | zipCode
+handleBlurZipCode | {county, district, zipCode}

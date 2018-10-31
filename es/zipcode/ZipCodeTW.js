@@ -24,7 +24,7 @@ export default class ZipCodeTW extends React.Component {
       zipCodePlaceholder: '',
     };
     es6BindAll(this, ['handleChangeCounty', 'handleChangeDistrict',
-      'handleChangeZipCode', 'handleBlurZipCode', 'findCountyAndDistrict']);
+      'handleChangeZipCode', 'handleBlurZipCode', 'findCountyAndDistrictByZipCode']);
   }
 
   componentDidMount() {
@@ -61,52 +61,61 @@ export default class ZipCodeTW extends React.Component {
     });
   }
 
-  componentWillReceiveProps(nextProps) {
-
-  }
-
   handleChangeCounty(county) {
     const districts = Object.keys(RawData[county]).map((d) => d, []);
     let district = districts[0];
     let zipCode = RawData[county][districts[0]];
+    let {countyFieldName, districtFieldName, zipCodeFieldName} = this.props;
     this.setState({
       county: county,
       districts: districts,
       district: district,
       zipCode: zipCode,
     });
-    !!this.props.handleChangeCounty && this.props.handleChangeCounty(county);
-    !!this.props.handleChangeDistrict && this.props.handleChangeDistrict(district);
-    !!this.props.handleChangeZipCode && this.props.handleChangeZipCode(zipCode);
+    !!this.props.handleChangeCounty && this.props.handleChangeCounty({
+      'countyFieldName':countyFieldName, 'countyValue': county,
+      'districtFieldName':districtFieldName, 'districtValue': district,
+      'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+    });
   }
 
   handleChangeDistrict(district){
     let zipCode = RawData[this.state.county][district];
+    let {zipCodeFieldName, districtFieldName} = this.props;
     this.setState({
       district: district,
       zipCode: zipCode,
     });
-    !!this.props.handleChangeDistrict && this.props.handleChangeDistrict(district);
-    !!this.props.handleChangeZipCode && this.props.handleChangeZipCode(zipCode);
+    !!this.props.handleChangeDistrict && this.props.handleChangeDistrict({
+      'districtFieldName':districtFieldName, 'districtValue': district,
+      'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+    });
   }
 
   handleChangeZipCode(zipCode){
+    let zipCodeFieldName = this.props.zipCodeFieldName;
     this.setState({
       zipCode: zipCode,
     });
-    !!this.props.handleChangeZipCode && this.props.handleChangeZipCode(zipCode);
-  }
-
-  handleBlurZipCode(zipCode){
-    const { county, district } = this.findCountyAndDistrict(zipCode);
-    const districts = Object.keys(RawData[county]).map((d) => d, []);
-    this.setState({county: county, district: district, districts: districts});
-    !!this.props.handleBlurZipCode && this.props.handleBlurZipCode({
-      county,district,zipCode
+    !!this.props.handleChangeZipCode && this.props.handleChangeZipCode({
+      'zipFieldName':zipCodeFieldName,'zipValue':zipCode
     });
   }
 
-  findCountyAndDistrict(zipCode){
+  handleBlurZipCode(zipCode){
+    const { county, district } = this.findCountyAndDistrictByZipCode(zipCode);
+    const districts = Object.keys(RawData[county]).map((d) => d, []);
+    let {countyFieldName, districtFieldName, zipCodeFieldName} = this.props;
+
+    this.setState({county: county, district: district, districts: districts});
+    !!this.props.handleBlurZipCode && this.props.handleBlurZipCode({
+      'countyFieldName':countyFieldName, 'countyValue': county,
+      'districtFieldName':districtFieldName, 'districtValue': district,
+      'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+    });
+  }
+
+  findCountyAndDistrictByZipCode(zipCode){
     let rtn = {}
     Object.keys(RawData).forEach((county) => {
       Object.keys(RawData[county]).forEach((district) => {
@@ -122,13 +131,17 @@ export default class ZipCodeTW extends React.Component {
   }
 
   render() {
+    const {zipStyle, countyStyle, districtStyle} = this.props;
+    const nowCountyStyle = !!countyStyle ? countyStyle:{marginLeft:'5px'};
+    const nowDistrictStyle = !!districtStyle ? districtStyle:{marginLeft:'5px', minWidth: '60px'};
+    const nowZipStyle = !!zipStyle ? zipStyle:{marginLeft:'5px', width: '50px'};
     return (
         <>
           {this.props.displayType === 'display' ?
               <ZipCode fieldName={this.props.zipCodeFieldName}
                        value={this.props.zipCodeValue}
                        zipClass={this.props.zipClass}
-                       zipStyle={this.props.zipStyle}
+                       zipStyle={nowZipStyle}
                        placeholder={this.props.zipCodePlaceholder}
                        displayType={this.props.displayType}
                        onChange={this.props.handleChangeZipCode}
@@ -138,8 +151,8 @@ export default class ZipCodeTW extends React.Component {
 
           <County fieldName={this.props.countyFieldName}
                   value={this.props.countyValue}
-                  countyStyle={this.props.countyStyle}
                   countyClass={this.props.countyClass}
+                  countyStyle={nowCountyStyle}
                   dataOptions={this.state.counties}
                   displayType={this.props.displayType}
                   onChange={this.handleChangeCounty}
@@ -147,7 +160,7 @@ export default class ZipCodeTW extends React.Component {
           <District fieldName={this.props.districtFieldName}
                     value={this.state.district}
                     districtClass={this.props.districtClass}
-                    districtStyle={this.props.districtStyle}
+                    districtStyle={nowDistrictStyle}
                     displayType={this.props.displayType}
                     dataOptions={this.state.districts}
                     onChange={this.handleChangeDistrict}
@@ -156,7 +169,7 @@ export default class ZipCodeTW extends React.Component {
             <ZipCode fieldName={this.props.zipCodeFieldName}
                      value={this.state.zipCode}
                      zipClass={this.props.zipClass}
-                     zipStyle={this.props.zipStyle}
+                     zipStyle={nowZipStyle}
                      placeholder={this.props.zipCodePlaceholder}
                      displayType={this.props.displayType}
                      onChange={this.handleChangeZipCode}
@@ -169,12 +182,12 @@ export default class ZipCodeTW extends React.Component {
 }
 
 ZipCodeTW.propTypes = {
-  displayType: PropTypes.oneOf(['text', 'display']),
-  countyFieldName: PropTypes.string,
+  displayType: PropTypes.oneOf(['text', 'display']).isRequired,
+  countyFieldName: PropTypes.string.isRequired,
   countyValue: PropTypes.string,
-  districtFieldName: PropTypes.string,
+  districtFieldName: PropTypes.string.isRequired,
   districtValue: PropTypes.string,
-  zipCodeFieldName: PropTypes.string,
+  zipCodeFieldName: PropTypes.string.isRequired,
   zipCodeValue: PropTypes.string,
   zipCodePlaceholder: PropTypes.string,
   handleChangeCounty: PropTypes.func,

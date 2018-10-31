@@ -11,16 +11,7 @@ export default class County extends React.Component {
 
   constructor(props) {
     super(props);
-
-
     es6BindAll(this, ['handleChange']);
-  }
-
-  componentDidMount() {
-  }
-
-  componentWillReceiveProps(nextProps) {
-
   }
 
   handleChange(e) {
@@ -47,7 +38,10 @@ export default class County extends React.Component {
               </select>
               :
               <span className={countyClass}
-                    style={countyStyle}>{value}</span>
+                    style={countyStyle}
+                    readOnly="true"
+                    disabled="true"
+              >{value}</span>
           }
         </>
     );

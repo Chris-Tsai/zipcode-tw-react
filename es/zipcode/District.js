@@ -45,7 +45,10 @@ export default class District extends React.Component {
               </select>
               :
               <span className={districtClass}
-                    style={districtStyle}>{value}</span>
+                    style={districtStyle}
+                    readOnly="true"
+                    disabled="true"
+              >{value}</span>
           }
         </>
     );

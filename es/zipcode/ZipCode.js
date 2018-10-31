@@ -35,14 +35,14 @@ export default class ZipCode extends React.Component {
     const {fieldName, zipClass, zipStyle, value, displayType, placeholder
     } = this.props;
 
-    const defaultStyle = !!zipStyle ? zipStyle: {width:'40px'};
+    const nowStyle = !!zipStyle ? zipStyle: {width:'40px'};
     return (
         <>
           {!!displayType && displayType === 'text' ?
               <input type="text"
                      name={fieldName}
                      className={zipClass}
-                     style={defaultStyle}
+                     style={nowStyle}
                      onChange={this.handleChange}
                      onBlur={this.handleBlur}
                      value={value}
@@ -50,7 +50,10 @@ export default class ZipCode extends React.Component {
               />
               :
               <span className={zipClass}
-                    style={zipStyle}>{value}</span>
+                    style={nowStyle}
+                    readOnly="true"
+                    disabled="true"
+              >{value}</span>
           }
         </>
     );
