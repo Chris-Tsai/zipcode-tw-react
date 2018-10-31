@@ -1,5 +1,5 @@
 {
-  "name": "@chrissoft/zipcode-tw-react",
+  "name": "zipcode-tw-react",
   "version": "0.0.1-beta2",
   "description": "",
   "main": "lib/index.js",

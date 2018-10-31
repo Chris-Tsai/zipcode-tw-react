@@ -9,7 +9,7 @@ npm install zipcode-tw-react --save
 ## Usage
 
 ```javascript
-import {ZipCodeTW} from "@chrissoft/zipcode-tw-react";
+import {ZipCodeTW} from "zipcode-tw-react";
 
 this.state = {
    displayType: 'text',
