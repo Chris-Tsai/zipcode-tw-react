@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import es6BindAll from "es6bindall";
 import {Panel, Table} from "react-bootstrap";
 import ZipCodeTW from "./es/zipcode/ZipCodeTW";
+import swal from 'sweetalert2';
 
 class ZipCodeTWTest extends React.Component {
 
@@ -37,7 +38,7 @@ class ZipCodeTWTest extends React.Component {
       handleZipCodeBlur: {},
     };
     es6BindAll(this, ['handleClick', 'handleCountyChange', 'handleDistrictChange'
-      , 'handleZipCodeChange', 'handleZipCodeBlur', 'handleChange', 'handleChangeObj']);
+      , 'handleZipCodeChange', 'handleZipCodeBlur', 'handleChange', 'handleChangeObj', 'handleZipCodeNotExists']);
   }
 
   handleChange(e){
@@ -81,6 +82,13 @@ class ZipCodeTWTest extends React.Component {
     this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleZipCodeBlur:e});
   }
 
+  handleZipCodeNotExists(e){
+    const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue } = e;
+    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue});
+
+    swal('郵遞區號不存在: '+zipValue,'' ,'error');
+  }
+
   render() {
     let countyRtn = JSON.stringify(this.state.handleCountyChange);
     let districtRtn = JSON.stringify(this.state.handleDistrictChange);
@@ -104,6 +112,7 @@ class ZipCodeTWTest extends React.Component {
                          handleChangeDistrict={this.handleDistrictChange}
                          handleChangeZipCode={this.handleZipCodeChange}
                          handleBlurZipCode={this.handleZipCodeBlur}
+                         handleZipCodeNotExists={this.handleZipCodeNotExists}
               />
               <br/>
               <div>
@@ -200,6 +209,7 @@ class ZipCodeTWTest extends React.Component {
                            handleChangeDistrict={this.handleDistrictChange}
                            handleChangeZipCode={this.handleZipCodeChange}
                            handleBlurZipCode={this.handleZipCodeBlur}
+                           handleZipCodeNotExists={this.handleZipCodeNotExists}
                 />
               </div>
               <br/>

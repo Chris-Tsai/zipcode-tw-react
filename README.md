@@ -49,6 +49,7 @@ this.state = {
           handleChangeDistrict={this.handleDistrictChange}
           handleChangeZipCode={this.handleZipCodeChange}
           handleBlurZipCode={this.handleZipCodeBlur}
+          handleZipCodeNotExists={this.handleZipCodeNotExists}
 />
 ```
 
@@ -80,3 +81,4 @@ handleChangeCounty | {countyFieldName, countyValue, districtFieldName, districtV
 handleChangeDistrict | {districtFieldName, districtValue, zipFieldName, zipValue}
 handleChangeZipCode | {zipFieldName, zipValue}
 handleBlurZipCode | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
+handleZipCodeNotExists | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}

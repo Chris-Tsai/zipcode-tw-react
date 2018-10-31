@@ -103,26 +103,34 @@ export default class ZipCodeTW extends React.Component {
   }
 
   handleBlurZipCode(zipCode){
-    const { county, district } = this.findCountyAndDistrictByZipCode(zipCode);
-    const districts = Object.keys(RawData[county]).map((d) => d, []);
+    const { countyN, districtN } = this.findCountyAndDistrictByZipCode(zipCode);
     let {countyFieldName, districtFieldName, zipCodeFieldName} = this.props;
-
-    this.setState({county: county, district: district, districts: districts});
-    !!this.props.handleBlurZipCode && this.props.handleBlurZipCode({
-      'countyFieldName':countyFieldName, 'countyValue': county,
-      'districtFieldName':districtFieldName, 'districtValue': district,
-      'zipFieldName':zipCodeFieldName,'zipValue':zipCode
-    });
+    if(!!countyN && !!districtN){
+      const districts = Object.keys(RawData[countyN]).map((d) => d, []);
+      this.setState({county: countyN, district: districtN, districts: districts});
+      !!this.props.handleBlurZipCode && this.props.handleBlurZipCode({
+        'countyFieldName':countyFieldName, 'countyValue': countyN,
+        'districtFieldName':districtFieldName, 'districtValue': districtN,
+        'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+      });
+    }else{
+      this.setState({county: '', district: '', districts: []});
+      !!this.props.handleZipCodeNotExists && this.props.handleZipCodeNotExists({
+        'countyFieldName':countyFieldName, 'countyValue': '',
+        'districtFieldName':districtFieldName, 'districtValue': '',
+        'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+      });
+    }
   }
 
   findCountyAndDistrictByZipCode(zipCode){
     let rtn = {}
-    Object.keys(RawData).forEach((county) => {
-      Object.keys(RawData[county]).forEach((district) => {
-        if (RawData[county][district] === zipCode.toString()) {
+    Object.keys(RawData).forEach((countyN) => {
+      Object.keys(RawData[countyN]).forEach((districtN) => {
+        if (RawData[countyN][districtN] === zipCode.toString()) {
           rtn = {
-            county,
-            district,
+            countyN,
+            districtN,
           };
         }
       });
@@ -194,6 +202,7 @@ ZipCodeTW.propTypes = {
   handleChangeDistrict: PropTypes.func,
   handleChangeZipCode: PropTypes.func,
   handleBlurZipCode: PropTypes.func,
+  handleZipCodeNotExists: PropTypes.func.isRequired,
   countyClass: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   countyStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   districtClass: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
