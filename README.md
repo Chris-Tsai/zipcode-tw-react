@@ -3,6 +3,8 @@
 ## Demo
 https://chris-tsai.github.io/
 
+![pic](demo.png)
+
 ## Installation
 
 ```bash
@@ -52,7 +54,7 @@ this.state = {
 
 ## Prop
 
-`Field`
+###### Field
 
 Name | Type | Default | Description
 :--- | :--- | :--- | :---
@@ -70,7 +72,7 @@ districtStyle | object | {marginLeft:'5px', minWidth: '60px'} |
 zipClass | string | |
 zipStyle | object | {marginLeft:'5px', width: '50px'}|
 
-`Method`
+###### Method
 
 Name | Return | Description
 :---  | :--- | :--- 
