@@ -24,12 +24,6 @@ this.state = {
       districtValue: '',
       zipCodeName: 'zipCodeValue',
       zipCodeValue: '',
-      countyName1: 'countyValue1',
-      countyValue1: '',
-      districtName1: 'districtValue1',
-      districtValue1: '',
-      zipCodeName1: 'zipCodeValue1',
-      zipCodeValue1: '',
       countyClass: 'form-control',
       countyStyle: {width: '100px'},
       districtClass: 'form-control',
@@ -45,6 +39,12 @@ this.state = {
           districtValue={this.state.districtValue}
           zipCodeFieldName={this.state.zipCodeName}
           zipCodeValue={this.state.zipCodeValue}
+          countyClass={this.state.countyClass}
+          countyStyle={this.state.countyStyle}
+          districtClass={this.state.districtClass}
+          districtStyle={this.state.districtStyle}
+          zipClass={this.state.zipCodeClass}
+          zipStyle={this.state.zipCodeStyle}
           handleChangeCounty={this.handleCountyChange}
           handleChangeDistrict={this.handleDistrictChange}
           handleChangeZipCode={this.handleZipCodeChange}
