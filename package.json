@@ -1,6 +1,6 @@
 {
   "name": "zipcode-tw-react",
-  "version": "0.0.1-beta3",
+  "version": "0.0.1-beta5",
   "description": "",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
