@@ -31,6 +31,10 @@ class ZipCodeTWTest extends React.Component {
       countyStyleStr:'width: \'100px\'',
       districtStyleStr:'width: \'100px\'',
       zipCodeStyleStr:'width: \'100px\'',
+      handleCountyChange: {},
+      handleDistrictChange: {},
+      handleZipCodeChange: {},
+      handleZipCodeBlur: {},
     };
     es6BindAll(this, ['handleClick', 'handleCountyChange', 'handleDistrictChange'
       , 'handleZipCodeChange', 'handleZipCodeBlur', 'handleChange', 'handleChangeObj']);
@@ -59,26 +63,29 @@ class ZipCodeTWTest extends React.Component {
   }
 
   handleCountyChange(e) {
-    console.log(e);
     const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue } = e;
-    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue});
+    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleCountyChange:e});
   }
 
   handleDistrictChange(e) {
     const {districtFieldName, districtValue, zipFieldName, zipValue } = e;
-    this.setState({[zipFieldName]: zipValue, [districtFieldName]:districtValue});
+    this.setState({[zipFieldName]: zipValue, [districtFieldName]:districtValue, handleDistrictChange:e});
   }
 
   handleZipCodeChange(e) {
-    this.setState({[e.zipFieldName]:e.zipValue});
+    this.setState({[e.zipFieldName]:e.zipValue, handleZipCodeChange:e});
   }
 
   handleZipCodeBlur(e) {
     const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue } = e;
-    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue});
+    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleZipCodeBlur:e});
   }
 
   render() {
+    let countyRtn = JSON.stringify(this.state.handleCountyChange);
+    let districtRtn = JSON.stringify(this.state.handleDistrictChange);
+    let zipCodeRtn = JSON.stringify(this.state.handleZipCodeChange);
+    let zipBlurRtn = JSON.stringify(this.state.handleZipCodeBlur);
     return (
         <div style={{width:'50%', margin: 'auto'}}>
           <h1> DEMO </h1>
@@ -99,7 +106,8 @@ class ZipCodeTWTest extends React.Component {
                          handleBlurZipCode={this.handleZipCodeBlur}
               />
               <br/>
-              <Table striped bordered condensed>
+              <div>
+              <Table striped bordered condensed style={{overflowX:'scroll'}}>
                 <thead>
                 <tr>
                   <th style={{width:'120px'}}>Prop</th>
@@ -125,6 +133,7 @@ class ZipCodeTWTest extends React.Component {
                 </tr>
                 </tbody>
               </Table>
+              </div>
             </Panel.Body>
           </Panel>
           <div>
@@ -220,6 +229,15 @@ class ZipCodeTWTest extends React.Component {
                 </tr>
                 </tbody>
               </Table>
+              <label>Return Object</label><br/>
+              <label>handleCountyChange</label>
+              <div><pre>{countyRtn}</pre></div>
+              <label>handleDistrictChange</label>
+              <div><pre>{districtRtn}</pre></div>
+              <label>handleZipCodeChange</label>
+              <div><pre>{zipCodeRtn}</pre></div>
+              <label>handleZipCodeBlur</label>
+              <div><pre>{zipBlurRtn}</pre></div>
             </Panel.Body>
           </Panel>
 
