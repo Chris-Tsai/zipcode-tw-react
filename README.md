@@ -1,7 +1,7 @@
 # zipcode-tw-react
 
 ## Demo
-Tyr it: https://chris-tsai.github.io/
+Tyr it online: https://chris-tsai.github.io/
 
 ![pic](demo.png)
 
@@ -67,13 +67,14 @@ this.state = {
 
  Name | Type | Default | Description
 :--- | :--- | :--- | :---
-displayType| one of: 'text', 'display' | 'text' | 
+displayType| one of: 'text', 'display' | 'text' | displayType = display時，以span顯示
 countyFieldName | string |'county' |
 countyValue | string | |
 districtFieldName | string |'district' |
 districtValue | string | |
 zipCodeFieldName | string |'zipCode' |
 zipCodeValue | string | |
+address | string | | 藉由地址資料處理相同郵遞區號不同行政區
 countyClass | string | |
 countyStyle | object | {marginLeft:'5px'} |
 districtClass | string | |

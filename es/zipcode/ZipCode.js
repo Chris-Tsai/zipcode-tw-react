@@ -14,32 +14,33 @@ export default class ZipCode extends React.Component {
     es6BindAll(this, ['handleChange', 'handleBlur']);
   }
 
-  componentDidMount() {
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-  }
-
   handleChange(e) {
     let value = e.target.value;
-    !!this.props.onChange && this.props.onChange(value);
+    let {onChange} = this.props;
+    if((value == '' || /^\d+$/.test(value)) && value.length <= 3
+        && typeof (onChange) == 'function'){
+      onChange(value);
+    }
   }
 
   handleBlur(e) {
     let value = e.target.value;
-    !!this.props.onBlur && this.props.onBlur(value);
+    let {onBlur} = this.props;
+    if(typeof (onBlur) == 'function'){
+      onBlur(value);
+    }
   }
 
   render() {
     const {fieldName, zipClass, zipStyle, value, displayType, placeholder
     } = this.props;
 
-    const nowStyle = !!zipStyle ? zipStyle: {width:'40px'};
+    const nowStyle = typeof(zipStyle) == 'undefined' ? {width:'40px'} : zipStyle;
     return (
         <>
           {!!displayType && displayType === 'text' ?
               <input type="text"
+                     pattern='[0-9]{0,3}'
                      name={fieldName}
                      className={zipClass}
                      style={nowStyle}
@@ -49,11 +50,14 @@ export default class ZipCode extends React.Component {
                      placeholder={placeholder}
               />
               :
-              <span className={zipClass}
-                    style={nowStyle}
-                    readOnly="true"
-                    disabled="true"
-              >{value}</span>
+              <>
+                <span className={zipClass}
+                      style={nowStyle}
+                      readOnly="true"
+                      disabled="true"
+                >{value}</span>
+                <input type="hidden" name={fieldName} value={value}/>
+              </>
           }
         </>
     );

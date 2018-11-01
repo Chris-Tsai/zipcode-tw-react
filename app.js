@@ -36,6 +36,7 @@ class ZipCodeTWTest extends React.Component {
       handleDistrictChange: {},
       handleZipCodeChange: {},
       handleZipCodeBlur: {},
+      handleZipCodeNotExists: {}
     };
     es6BindAll(this, ['handleClick', 'handleCountyChange', 'handleDistrictChange'
       , 'handleZipCodeChange', 'handleZipCodeBlur', 'handleChange', 'handleChangeObj', 'handleZipCodeNotExists']);
@@ -65,28 +66,28 @@ class ZipCodeTWTest extends React.Component {
 
   handleCountyChange(e) {
     const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue } = e;
-    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleCountyChange:e});
+    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleCountyChange:e, handleDistrictChange:{}, handleZipCodeChange: {}, handleZipCodeBlur:{}, handleZipCodeNotExists: {}});
   }
 
   handleDistrictChange(e) {
     const {districtFieldName, districtValue, zipFieldName, zipValue } = e;
-    this.setState({[zipFieldName]: zipValue, [districtFieldName]:districtValue, handleDistrictChange:e});
+    this.setState({[zipFieldName]: zipValue, [districtFieldName]:districtValue, handleDistrictChange:e, handleCountyChange:{}, handleZipCodeChange: {}, handleZipCodeBlur:{}, handleZipCodeNotExists: {}});
   }
 
   handleZipCodeChange(e) {
-    this.setState({[e.zipFieldName]:e.zipValue, handleZipCodeChange:e});
+    this.setState({[e.zipFieldName]:e.zipValue, handleZipCodeChange:e, handleDistrictChange:{}, handleCountyChange:{}, handleZipCodeBlur:{}, handleZipCodeNotExists: {}});
   }
 
   handleZipCodeBlur(e) {
     const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue } = e;
-    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleZipCodeBlur:e});
+    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleZipCodeBlur:e, handleDistrictChange:{}, handleCountyChange:{}, handleZipCodeChange: {}, handleZipCodeNotExists: {}});
   }
 
   handleZipCodeNotExists(e){
-    const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue } = e;
-    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue});
+    const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue, origZipValue } = e;
+    this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleZipCodeNotExists:e, handleZipCodeBlur:{}, handleDistrictChange:{}, handleCountyChange:{}, handleZipCodeChange: {}});
 
-    swal('郵遞區號不存在: '+zipValue,'' ,'error');
+    swal('郵遞區號不存在: '+origZipValue,'' ,'error');
   }
 
   render() {
@@ -94,65 +95,42 @@ class ZipCodeTWTest extends React.Component {
     let districtRtn = JSON.stringify(this.state.handleDistrictChange);
     let zipCodeRtn = JSON.stringify(this.state.handleZipCodeChange);
     let zipBlurRtn = JSON.stringify(this.state.handleZipCodeBlur);
+    let zipNotExistsRtn = JSON.stringify(this.state.handleZipCodeNotExists);
     return (
         <div style={{width:'50%', margin: 'auto'}}>
-          <h1> DEMO </h1>
-
-          <Panel>
-            <Panel.Heading>Without CSS & STYLE</Panel.Heading>
+          <h1> Live Demo </h1>
+          <Panel bsStyle="primary">
+            <Panel.Heading>ZipCodeTW with Bootstrap CSS </Panel.Heading>
             <Panel.Body>
-              <ZipCodeTW displayType={this.state.displayType}
-                         countyFieldName={this.state.countyName}
-                         countyValue={this.state.countyValue}
-                         districtFieldName={this.state.districtName}
-                         districtValue={this.state.districtValue}
-                         zipCodeFieldName={this.state.zipCodeName}
-                         zipCodeValue={this.state.zipCodeValue}
-                         handleChangeCounty={this.handleCountyChange}
-                         handleChangeDistrict={this.handleDistrictChange}
-                         handleChangeZipCode={this.handleZipCodeChange}
-                         handleBlurZipCode={this.handleZipCodeBlur}
-                         handleZipCodeNotExists={this.handleZipCodeNotExists}
-              />
+              <label> ZipCodeTW with {'<div className="form-inline">'}</label>
+              <div className="form-inline">
+                <ZipCodeTW displayType={this.state.displayType}
+                           countyFieldName={this.state.countyName1}
+                           countyValue={this.state.countyValue1}
+                           districtFieldName={this.state.districtName1}
+                           districtValue={this.state.districtValue1}
+                           zipCodeFieldName={this.state.zipCodeName1}
+                           zipCodeValue={this.state.zipCodeValue1}
+                           countyClass={this.state.countyClass}
+                           countyStyle={this.state.countyStyle}
+                           districtClass={this.state.districtClass}
+                           districtStyle={this.state.districtStyle}
+                           zipClass={this.state.zipCodeClass}
+                           zipStyle={this.state.zipCodeStyle}
+                           handleChangeCounty={this.handleCountyChange}
+                           handleChangeDistrict={this.handleDistrictChange}
+                           handleChangeZipCode={this.handleZipCodeChange}
+                           handleBlurZipCode={this.handleZipCodeBlur}
+                           handleZipCodeNotExists={this.handleZipCodeNotExists}
+                />
+              </div>
               <br/>
               <div>
-              <Table striped bordered condensed style={{overflowX:'scroll'}}>
-                <thead>
-                <tr>
-                  <th style={{width:'120px'}}>Prop</th>
-                  <th>Value</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>displayType</td>
-                  <td>{this.state.displayType}</td>
-                </tr>
-                <tr>
-                  <td>countyValue</td>
-                  <td>{this.state.countyValue}</td>
-                </tr>
-                <tr>
-                  <td>districtValue</td>
-                  <td>{this.state.districtValue}</td>
-                </tr>
-                <tr>
-                  <td>zipCodeValue</td>
-                  <td>{this.state.zipCodeValue}</td>
-                </tr>
-                </tbody>
-              </Table>
+                <button className="btn-xs btn-success" onClick={this.handleClick}>Change DisplayType</button>
               </div>
-            </Panel.Body>
-          </Panel>
-          <div>
-            <button className="btn-xs btn-success" onClick={this.handleClick}>Change DisplayType</button>
-          </div>
-          <br/>
-          <Panel>
-            <Panel.Heading>With CSS </Panel.Heading>
-            <Panel.Body>
+              <br/>
 
+              <label> You can change CSS or Style</label>
               <Table striped bordered condensed>
                 <thead>
                 <tr>
@@ -190,56 +168,7 @@ class ZipCodeTWTest extends React.Component {
                 </tbody>
               </Table>
 
-              <label> with div form-inline</label>
-              <div className="form-inline">
-                <ZipCodeTW displayType={this.state.displayType}
-                           countyFieldName={this.state.countyName1}
-                           countyValue={this.state.countyValue1}
-                           districtFieldName={this.state.districtName1}
-                           districtValue={this.state.districtValue1}
-                           zipCodeFieldName={this.state.zipCodeName1}
-                           zipCodeValue={this.state.zipCodeValue1}
-                           countyClass={this.state.countyClass}
-                           countyStyle={this.state.countyStyle}
-                           districtClass={this.state.districtClass}
-                           districtStyle={this.state.districtStyle}
-                           zipClass={this.state.zipCodeClass}
-                           zipStyle={this.state.zipCodeStyle}
-                           handleChangeCounty={this.handleCountyChange}
-                           handleChangeDistrict={this.handleDistrictChange}
-                           handleChangeZipCode={this.handleZipCodeChange}
-                           handleBlurZipCode={this.handleZipCodeBlur}
-                           handleZipCodeNotExists={this.handleZipCodeNotExists}
-                />
-              </div>
-              <br/>
-              <Table striped bordered condensed>
-                <thead>
-                <tr>
-                  <th style={{width:'120px'}}>Prop</th>
-                  <th>Value</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>displayType</td>
-                  <td>{this.state.displayType}</td>
-                </tr>
-                <tr>
-                  <td>countyValue</td>
-                  <td>{this.state.countyValue1}</td>
-                </tr>
-                <tr>
-                  <td>districtValue</td>
-                  <td>{this.state.districtValue1}</td>
-                </tr>
-                <tr>
-                  <td>zipCodeValue</td>
-                  <td>{this.state.zipCodeValue1}</td>
-                </tr>
-                </tbody>
-              </Table>
-              <label>Return Object</label><br/>
+              <h4><label>Function And Return Object</label></h4>
               <label>handleCountyChange</label>
               <div><pre>{countyRtn}</pre></div>
               <label>handleDistrictChange</label>
@@ -248,7 +177,15 @@ class ZipCodeTWTest extends React.Component {
               <div><pre>{zipCodeRtn}</pre></div>
               <label>handleZipCodeBlur</label>
               <div><pre>{zipBlurRtn}</pre></div>
+              <label>handleZipCodeNotExists</label>
+              <div><pre>{zipNotExistsRtn}</pre></div>
             </Panel.Body>
+            <Panel.Footer>
+              <div style={{textAlign: 'center'}}>
+                <a href="https://github.com/Chris-Tsai/zipcode-tw-react">Github</a>
+                <a href="https://www.npmjs.com/package/zipcode-tw-react" style={{marginLeft:'10px'}}>Npmjs</a>
+              </div>
+            </Panel.Footer>
           </Panel>
 
 
@@ -256,7 +193,6 @@ class ZipCodeTWTest extends React.Component {
     );
   }
 }
-
 
 window.app = {};
 

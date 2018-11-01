@@ -14,16 +14,12 @@ export default class District extends React.Component {
     es6BindAll(this, ['handleChange']);
   }
 
-  componentDidMount() {
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-  }
-
   handleChange(e) {
     let value = e.target.value;
-    !!this.props.onChange && this.props.onChange(value);
+    let {onChange} = this.props;
+    if(typeof (onChange) == 'function'){
+      onChange(value);
+    }
   }
 
   render() {
@@ -44,11 +40,14 @@ export default class District extends React.Component {
                 {districts}
               </select>
               :
+              <>
               <span className={districtClass}
                     style={districtStyle}
                     readOnly="true"
                     disabled="true"
               >{value}</span>
+              <input type="hidden" name={fieldName} value={value}/>
+              </>
           }
         </>
     );

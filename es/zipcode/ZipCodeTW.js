@@ -16,11 +16,11 @@ export default class ZipCodeTW extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      county: '',
+      county: 'county',
       counties: [],
-      district: '',
+      district: 'district',
       districts: [],
-      zipCode: '',
+      zipCode: 'zipCode',
       zipCodePlaceholder: '',
     };
     es6BindAll(this, ['handleChangeCounty', 'handleChangeDistrict',
@@ -36,11 +36,11 @@ export default class ZipCodeTW extends React.Component {
     } = this.props;
     const county = (countyValue === '') ? counties[0] : countyValue;
     let district;
-    let zipCode = !!zipCodeValue ? zipCodeValue : '';
+    let zipCode = typeof(zipCodeValue) == 'undefined' ?  '' : zipCodeValue;
+    let countyRaw = RawData[county];
+    const districts = typeof(countyRaw) == 'undefined'  ? [] : Object.keys(countyRaw).map((d) => d, []);
 
-    const districts = !!RawData[county] ? Object.keys(RawData[county]).map((d) => d, []): [];
-
-    if(!!districts && districts.length > 0){
+    if(typeof(districts) != 'undefined' && districts.length > 0){
       if (districtValue === '') {
         district = districts[0];
       } else if (districts.indexOf(districtValue) > -1) {
@@ -65,60 +65,80 @@ export default class ZipCodeTW extends React.Component {
     const districts = Object.keys(RawData[county]).map((d) => d, []);
     let district = districts[0];
     let zipCode = RawData[county][districts[0]];
-    let {countyFieldName, districtFieldName, zipCodeFieldName} = this.props;
+    let {countyFieldName, districtFieldName, zipCodeFieldName, handleChangeCounty} = this.props;
     this.setState({
       county: county,
       districts: districts,
       district: district,
       zipCode: zipCode,
-    });
-    !!this.props.handleChangeCounty && this.props.handleChangeCounty({
-      'countyFieldName':countyFieldName, 'countyValue': county,
-      'districtFieldName':districtFieldName, 'districtValue': district,
-      'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+    }, () => {
+      if(typeof (handleChangeCounty) == 'function'){
+        handleChangeCounty({
+          'countyFieldName':countyFieldName, 'countyValue': county,
+          'districtFieldName':districtFieldName, 'districtValue': district,
+          'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+        });
+      }
     });
   }
 
   handleChangeDistrict(district){
     let zipCode = RawData[this.state.county][district];
-    let {zipCodeFieldName, districtFieldName} = this.props;
+    let {countyFieldName, zipCodeFieldName, districtFieldName, handleChangeDistrict} = this.props;
     this.setState({
       district: district,
       zipCode: zipCode,
-    });
-    !!this.props.handleChangeDistrict && this.props.handleChangeDistrict({
-      'districtFieldName':districtFieldName, 'districtValue': district,
-      'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+    }, () => {
+      if(typeof (handleChangeDistrict) == 'function'){
+        handleChangeDistrict({
+          'countyFieldName': countyFieldName, 'countyValue': this.state.county,
+          'districtFieldName':districtFieldName, 'districtValue': district,
+          'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+        });
+      }
     });
   }
 
   handleChangeZipCode(zipCode){
-    let zipCodeFieldName = this.props.zipCodeFieldName;
+    let {zipCodeFieldName, handleChangeZipCode} = this.props;
     this.setState({
       zipCode: zipCode,
-    });
-    !!this.props.handleChangeZipCode && this.props.handleChangeZipCode({
-      'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+    }, () =>{
+      if(typeof (handleChangeZipCode) == 'function'){
+        handleChangeZipCode({
+          'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+        });
+      }
     });
   }
 
   handleBlurZipCode(zipCode){
     const { countyN, districtN } = this.findCountyAndDistrictByZipCode(zipCode);
-    let {countyFieldName, districtFieldName, zipCodeFieldName} = this.props;
-    if(!!countyN && !!districtN){
+    let {countyFieldName, districtFieldName, zipCodeFieldName, handleZipCodeNotExists, handleBlurZipCode} = this.props;
+    if(typeof(countyN) != 'undefined' && typeof(districtN) != 'undefined'){
       const districts = Object.keys(RawData[countyN]).map((d) => d, []);
-      this.setState({county: countyN, district: districtN, districts: districts});
-      !!this.props.handleBlurZipCode && this.props.handleBlurZipCode({
-        'countyFieldName':countyFieldName, 'countyValue': countyN,
-        'districtFieldName':districtFieldName, 'districtValue': districtN,
-        'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+      this.setState({
+        county: countyN, district: districtN, districts: districts
+      }, () =>{
+        if(typeof (handleBlurZipCode) == 'function'){
+          handleBlurZipCode({
+            'countyFieldName':countyFieldName, 'countyValue': countyN,
+            'districtFieldName':districtFieldName, 'districtValue': districtN,
+            'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+          });
+        }
       });
     }else{
-      this.setState({county: '', district: '', districts: []});
-      !!this.props.handleZipCodeNotExists && this.props.handleZipCodeNotExists({
-        'countyFieldName':countyFieldName, 'countyValue': '',
-        'districtFieldName':districtFieldName, 'districtValue': '',
-        'zipFieldName':zipCodeFieldName,'zipValue':zipCode
+      this.setState({
+        county: '', district: '', districts: [], zipCode: ''
+      }, () =>{
+        if(typeof (handleZipCodeNotExists) == 'function'){
+          handleZipCodeNotExists({
+            'countyFieldName':countyFieldName, 'countyValue': '',
+            'districtFieldName':districtFieldName, 'districtValue': '',
+            'zipFieldName':zipCodeFieldName,'zipValue':'', 'origZipValue': zipCode
+          });
+        }
       });
     }
   }
@@ -140,9 +160,9 @@ export default class ZipCodeTW extends React.Component {
 
   render() {
     const {zipStyle, countyStyle, districtStyle} = this.props;
-    const nowCountyStyle = !!countyStyle ? countyStyle:{marginLeft:'5px'};
-    const nowDistrictStyle = !!districtStyle ? districtStyle:{marginLeft:'5px', minWidth: '60px'};
-    const nowZipStyle = !!zipStyle ? zipStyle:{marginLeft:'5px', width: '50px'};
+    const nowCountyStyle = typeof (countyStyle) != 'undefined' ? countyStyle:{marginLeft:'5px'};
+    const nowDistrictStyle = typeof (districtStyle) != 'undefined' ? districtStyle:{marginLeft:'5px', minWidth: '60px'};
+    const nowZipStyle = typeof (zipStyle) != 'undefined' ? zipStyle:{marginLeft:'5px', width: '50px'};
     return (
         <>
           {this.props.displayType === 'display' ?
@@ -191,18 +211,19 @@ export default class ZipCodeTW extends React.Component {
 
 ZipCodeTW.propTypes = {
   displayType: PropTypes.oneOf(['text', 'display']).isRequired,
-  countyFieldName: PropTypes.string.isRequired,
+  address: PropTypes.string,
+  countyFieldName: PropTypes.string,
   countyValue: PropTypes.string,
-  districtFieldName: PropTypes.string.isRequired,
+  districtFieldName: PropTypes.string,
   districtValue: PropTypes.string,
-  zipCodeFieldName: PropTypes.string.isRequired,
+  zipCodeFieldName: PropTypes.string,
   zipCodeValue: PropTypes.string,
   zipCodePlaceholder: PropTypes.string,
   handleChangeCounty: PropTypes.func,
   handleChangeDistrict: PropTypes.func,
   handleChangeZipCode: PropTypes.func,
   handleBlurZipCode: PropTypes.func,
-  handleZipCodeNotExists: PropTypes.func.isRequired,
+  handleZipCodeNotExists: PropTypes.func,
   countyClass: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   countyStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   districtClass: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),

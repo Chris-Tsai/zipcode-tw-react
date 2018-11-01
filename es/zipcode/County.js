@@ -16,15 +16,19 @@ export default class County extends React.Component {
 
   handleChange(e) {
     let value = e.target.value;
-    !!this.props.onChange && this.props.onChange(value);
+    let {onChange} = this.props;
+    if(typeof (onChange) == 'function'){
+      onChange(value);
+    }
   }
 
   render() {
-    const {dataOptions, fieldName, countyClass, countyStyle, value, displayType
+    const {
+      dataOptions, fieldName, countyClass, countyStyle, value, displayType
     } = this.props;
 
     const counties = !!dataOptions && dataOptions.map((op) =>
-        <option key={ op } value={ op }>{op}</option>);
+        <option key={op} value={op}>{op}</option>);
     return (
         <>
           {!!displayType && displayType === 'text' ?
@@ -37,11 +41,14 @@ export default class County extends React.Component {
                 {counties}
               </select>
               :
-              <span className={countyClass}
-                    style={countyStyle}
-                    readOnly="true"
-                    disabled="true"
-              >{value}</span>
+              <>
+                <span className={countyClass}
+                      style={countyStyle}
+                      readOnly="true"
+                      disabled="true"
+                >{value}</span>
+                <input type="hidden" name={fieldName} value={value}/>
+              </>
           }
         </>
     );
@@ -76,10 +83,12 @@ County.propTypes = {
   /**
    * class
    */
-  countyClass: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+  countyClass: PropTypes.oneOfType(
+      [PropTypes.string, PropTypes.array, PropTypes.object]),
 
   /**
    * style
    */
-  countyStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+  countyStyle: PropTypes.oneOfType(
+      [PropTypes.string, PropTypes.array, PropTypes.object]),
 };

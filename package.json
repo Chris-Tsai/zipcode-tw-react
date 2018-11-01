@@ -4,13 +4,6 @@
   "description": "",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node ./scripts/build.js",
-    "start": "node ./scripts/start.js",
-    "compile": "./node_modules/.bin/babel es -d lib",
-    "release": "./node_modules/.bin/babel es -d lib && npm publish --access=public"
-  },
   "dependencies": {
     "es6bindall": "0.0.9",
     "prop-types": "^15.5.8",
@@ -37,7 +30,18 @@
     "webpack": "^3.10.0",
     "webpack-body-parser": "^1.11.110",
     "webpack-dev-server": "^2.10.0",
-    "webpack-encoding-plugin": "^0.2.0"
+    "webpack-encoding-plugin": "^0.2.0",
+    "eslint": "^5.8.0",
+    "eslint-plugin-react": "^7.11.1",
+    "babel-eslint": "^10.0.1"
+  },
+  "scripts": {
+    "lint": "eslint ./es/**/*.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./scripts/build.js",
+    "start": "node ./scripts/start.js",
+    "compile": "./node_modules/.bin/babel es -d lib",
+    "release": "./node_modules/.bin/babel es -d lib && npm publish --access=public"
   },
   "repository": {
     "type": "git",
