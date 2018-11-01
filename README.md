@@ -1,7 +1,7 @@
 # zipcode-tw-react
 
 ## Demo
-https://chris-tsai.github.io/
+Tyr it: https://chris-tsai.github.io/
 
 ![pic](demo.png)
 
@@ -9,6 +9,14 @@ https://chris-tsai.github.io/
 
 ```bash
 npm install zipcode-tw-react --save
+```
+or use package.json
+
+```bash
+"dependencies": {
+      ...
+    + "zipcode-tw-react": "1.0.0",
+ },
 ```
 
 ## Usage
@@ -57,14 +65,14 @@ this.state = {
 
 ###### Field
 
-Name | Type | Default | Description
+ Name | Type | Default | Description
 :--- | :--- | :--- | :---
 displayType| one of: 'text', 'display' | 'text' | 
-countyFieldName | string | |
+countyFieldName | string |'county' |
 countyValue | string | |
-districtFieldName | string | |
+districtFieldName | string |'district' |
 districtValue | string | |
-zipCodeFieldName | string | |
+zipCodeFieldName | string |'zipCode' |
 zipCodeValue | string | |
 countyClass | string | |
 countyStyle | object | {marginLeft:'5px'} |
@@ -72,16 +80,17 @@ districtClass | string | |
 districtStyle | object | {marginLeft:'5px', minWidth: '60px'} |
 zipClass | string | |
 zipStyle | object | {marginLeft:'5px', width: '50px'}|
+zipCodePlaceholder | string | |
 
 ###### Method
 
-Name | Return | Description
-:---  | :--- | :--- 
-handleChangeCounty | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
-handleChangeDistrict | {districtFieldName, districtValue, zipFieldName, zipValue}
-handleChangeZipCode | {zipFieldName, zipValue}
-handleBlurZipCode | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
-handleZipCodeNotExists | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
+ Name | Return | Description
+ :---  | :--- | :--- 
+ handleChangeCounty | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
+ handleChangeDistrict | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
+ handleChangeZipCode | {zipFieldName, zipValue}
+ handleBlurZipCode | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
+ handleZipCodeNotExists | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, origZipCode}
 
 ## Stargazers over time
 
