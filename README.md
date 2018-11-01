@@ -82,3 +82,8 @@ handleChangeDistrict | {districtFieldName, districtValue, zipFieldName, zipValue
 handleChangeZipCode | {zipFieldName, zipValue}
 handleBlurZipCode | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
 handleZipCodeNotExists | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
+
+## Stargazers over time
+
+[![Stargazers over time](https://starcharts.herokuapp.com/Chris-Tsai/zipcode-tw-react.svg)](https://starcharts.herokuapp.com/Chris-Tsai/zipcode-tw-react)
+      
