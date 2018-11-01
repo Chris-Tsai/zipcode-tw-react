@@ -6,10 +6,11 @@
 
 ## Installation
 
+In zipcode-tw-react
 ```bash
-npm install
-
-npm run build
+$ cd _example
+$ npm install
+$ npm run build
 ```
 
 Open index.html and you will see
