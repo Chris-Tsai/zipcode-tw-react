@@ -1,0 +1,46 @@
+{
+  "name": "zipcode-tw-react-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "jsnext:main": "es/index.js",
+  "dependencies": {
+    "es6bindall": "0.0.9",
+    "prop-types": "^15.5.8",
+    "react": "^16.6.0",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.6.0",
+    "sweetalert2": "^7.28.2",
+    "zipcode-tw-react": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.36",
+    "babel-loader": "^8.0.2",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-json-strings": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-rc.1",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-rc.1",
+    "@babel/plugin-syntax-import-meta": "^7.0.0-rc.1",
+    "@babel/polyfill": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "@babel/preset-flow": "^7.0.0-rc.1",
+    "@babel/preset-react": "^7.0.0-rc.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "fs-extra": "^5.0.0",
+    "webpack": "^3.10.0",
+    "webpack-body-parser": "^1.11.110",
+    "webpack-encoding-plugin": "^0.2.0",
+    "eslint": "^5.8.0",
+    "eslint-plugin-react": "^7.11.1",
+    "babel-eslint": "^10.0.1"
+  },
+  "scripts": {
+    "lint": "eslint ./js/**.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./scripts/build.js"
+  },
+  "author": "Chris.Tsai",
+  "license": "MIT",
+  "homepage": "https://github.com/Chris-Tsai/zipcode-tw-react#readme"
+}
