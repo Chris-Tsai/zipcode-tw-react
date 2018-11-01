@@ -24,42 +24,11 @@ or use package.json
 ```javascript
 import {ZipCodeTW} from "zipcode-tw-react";
 
-this.state = {
-      displayType: 'text',
-      countyName: 'countyValue',
-      countyValue: '',
-      districtName: 'districtValue',
-      districtValue: '',
-      zipCodeName: 'zipCodeValue',
-      zipCodeValue: '',
-      countyClass: 'form-control',
-      countyStyle: {width: '100px'},
-      districtClass: 'form-control',
-      districtStyle: {width: '100px'},
-      zipCodeClass: 'form-control',
-      zipCodeStyle: {width: '100px'},
-};
-
-<ZipCodeTW displayType={this.state.displayType}
-          countyFieldName={this.state.countyName}
-          countyValue={this.state.countyValue}
-          districtFieldName={this.state.districtName}
-          districtValue={this.state.districtValue}
-          zipCodeFieldName={this.state.zipCodeName}
-          zipCodeValue={this.state.zipCodeValue}
-          countyClass={this.state.countyClass}
-          countyStyle={this.state.countyStyle}
-          districtClass={this.state.districtClass}
-          districtStyle={this.state.districtStyle}
-          zipClass={this.state.zipCodeClass}
-          zipStyle={this.state.zipCodeStyle}
-          handleChangeCounty={this.handleCountyChange}
-          handleChangeDistrict={this.handleDistrictChange}
-          handleChangeZipCode={this.handleZipCodeChange}
-          handleBlurZipCode={this.handleZipCodeBlur}
-          handleZipCodeNotExists={this.handleZipCodeNotExists}
+<ZipCodeTW displayType="text"
+          ...
 />
 ```
+Example : [Address.js](https://github.com/Chris-Tsai/zipcode-tw-react/tree/master/_example) 
 
 ## Prop
 
