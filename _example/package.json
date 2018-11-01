@@ -30,13 +30,9 @@
     "fs-extra": "^5.0.0",
     "webpack": "^3.10.0",
     "webpack-body-parser": "^1.11.110",
-    "webpack-encoding-plugin": "^0.2.0",
-    "eslint": "^5.8.0",
-    "eslint-plugin-react": "^7.11.1",
-    "babel-eslint": "^10.0.1"
+    "webpack-encoding-plugin": "^0.2.0"
   },
   "scripts": {
-    "lint": "eslint ./js/**.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node ./scripts/build.js"
   },
