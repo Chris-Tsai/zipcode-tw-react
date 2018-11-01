@@ -67,14 +67,13 @@ this.state = {
 
  Name | Type | Default | Description
 :--- | :--- | :--- | :---
-displayType| one of: 'text', 'display' | 'text' | displayType = display時，以span顯示
+displayType| one of: 'text', 'display' | 'text' | displayType = display時，以span顯示且包含readOnly & disabled屬性
 countyFieldName | string |'county' |
 countyValue | string | |
 districtFieldName | string |'district' |
 districtValue | string | |
 zipCodeFieldName | string |'zipCode' |
 zipCodeValue | string | |
-address | string | | 藉由地址資料處理相同郵遞區號不同行政區
 countyClass | string | |
 countyStyle | object | {marginLeft:'5px'} |
 districtClass | string | |
