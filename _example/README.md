@@ -1,5 +1,9 @@
 # zipcode-tw-react-example
 
+## Useage
+
+程式參考: [Address.js](https://github.com/Chris-Tsai/zipcode-tw-react/blob/master/_example/js/Address.js "Address.js")
+
 ## Installation
 
 ```bash
