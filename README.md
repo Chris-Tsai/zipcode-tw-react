@@ -28,7 +28,7 @@ import {ZipCodeTW} from "zipcode-tw-react";
           ...
 />
 ```
-Example : [Address.js](https://github.com/Chris-Tsai/zipcode-tw-react/tree/master/_example) 
+Example : [zipcode-tw-react-example](https://github.com/Chris-Tsai/zipcode-tw-react/tree/master/_example) 
 
 ## Prop
 
