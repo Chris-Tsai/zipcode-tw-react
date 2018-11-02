@@ -1,8 +1,7 @@
 import es6BindAll from "es6bindall";
 import React from "react";
 import swal from "sweetalert2";
-// import {ZipCodeTW} from "zipcode-tw-react"
-import ZipCodeTW from "./zipcode/ZipCodeTW";
+import {ZipCodeTW} from "zipcode-tw-react"
 
 class Address extends React.Component {
 

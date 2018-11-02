@@ -17,6 +17,31 @@ Open index.html and you will see
 
 ![pic](example.png)
 
+---
+#### ZipCodeTW with address
+```javascript
+<div className="form-inline">
+  <ZipCodeTW displayType={this.state.displayType}
+             countyValue={this.state.county}
+             districtValue={this.state.district}
+             zipCodeValue={this.state.zipCode}
+             handleChangeCounty={this.handleZipCodeChange}
+             handleChangeDistrict={this.handleZipCodeChange}
+             handleChangeZipCode={this.handleZipCodeChange}
+             handleBlurZipCode={this.handleZipCodeChange}
+             handleZipCodeNotExists={this.handleZipCodeNotExists}
+  />
+  <label style={{marginLeft:'15px'}}>address</label>
+  <input name="address" value={this.state.address}
+         className="form-control"
+         placeholder="輸入地址"
+         style={{marginLeft:'5px', width: '300px', display: addressShow}}
+         onChange={this.handleChange}
+  />
+</div>
+```
+
+
 #### No use address
 ```javascript
 <div className="form-inline">
