@@ -1,9 +1,5 @@
 # zipcode-tw-react-example
 
-## Useage
-
-程式參考: [Address.js](https://github.com/Chris-Tsai/zipcode-tw-react/blob/master/_example/js/Address.js "Address.js")
-
 ## Installation
 
 In zipcode-tw-react
@@ -18,6 +14,10 @@ Open index.html and you will see
 ![pic](example.png)
 
 ---
+## Useage
+
+程式參考: [Address.js](https://github.com/Chris-Tsai/zipcode-tw-react/blob/master/_example/js/Address.js "Address.js")
+
 #### ZipCodeTW with address
 ```javascript
 <div className="form-inline">
