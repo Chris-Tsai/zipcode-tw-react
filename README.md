@@ -55,6 +55,8 @@ zipStyle | object | `displayType= 'text'時預設為 {marginLeft:'5px', width: '
 zipCodePlaceholder | string | |
 fullAddress | string | | 完整地址(優化顯示)
 address | string | | 路段地址資訊(優化顯示)
+addressClass | string | 'form-control'|
+addressStyle | object | {} |
 
 ###### Method
 

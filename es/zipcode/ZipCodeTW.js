@@ -175,7 +175,8 @@ export default class ZipCodeTW extends React.Component {
   }
 
   render() {
-    const {zipStyle, countyStyle, districtStyle, zipClass, countyClass, districtClass, displayType, fullAddress, address} = this.props;
+    const {zipStyle, countyStyle, districtStyle, zipClass, countyClass, districtClass,
+      displayType, fullAddress, address, addressClass, addressStyle} = this.props;
     const displayTypeFlag = (displayType === 'display') ? true : false;
     const nowCountyStyle = typeof (countyStyle) != 'undefined' ? countyStyle:{};
     const nowDistrictStyle = typeof (districtStyle) != 'undefined' ? districtStyle: displayTypeFlag ? {} : {marginLeft:'5px', minWidth:'107px', paddingRight:'0px'};
@@ -183,6 +184,7 @@ export default class ZipCodeTW extends React.Component {
     const nowCountyClass = typeof (countyClass) != 'undefined' ? countyClass: 'form-control';
     const nowDistrictClass = typeof (districtClass) != 'undefined' ? districtClass: 'form-control';
     const nowZipClass = typeof (zipClass) != 'undefined' ? zipClass: 'form-control';
+    const nowAddressClass = typeof (addressClass) != 'undefined' ? addressClass: 'form-control';
 
     return (
         <>
@@ -199,7 +201,10 @@ export default class ZipCodeTW extends React.Component {
           }
 
           {typeof (fullAddress) != 'undefined' && displayTypeFlag ?
-              fullAddress : <>
+              <span className={nowAddressClass} style={addressStyle}
+                    readOnly={true}
+                    disabled={true}
+              >{fullAddress}</span> : <>
                 <County fieldName={this.props.countyFieldName}
                         value={this.props.countyValue}
                         countyClass={nowCountyClass}
@@ -227,8 +232,10 @@ export default class ZipCodeTW extends React.Component {
                              onBlur={this.handleBlurZipCode}
                     /> : ''
                 }
-                { typeof (address) != 'undefined' && displayTypeFlag ?
-                    address : ''
+                {typeof (address) != 'undefined' && displayTypeFlag ?
+                    <span className={nowAddressClass} style={addressStyle}
+                          readOnly={true}
+                          disabled={true}>{address}</span> : ''
                 }
               </>
           }
@@ -259,4 +266,6 @@ ZipCodeTW.propTypes = {
   districtStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   zipClass: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   zipStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+  addressClass: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+  addressStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
 };
