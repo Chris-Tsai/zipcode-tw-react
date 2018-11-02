@@ -17,3 +17,36 @@ Open index.html and you will see
 
 ![pic](example.png)
 
+#### No use address
+```javascript
+<div className="form-inline">
+  <ZipCodeTW displayType='display'
+             countyValue={this.state.county}
+             districtValue={this.state.district}
+             zipCodeValue={this.state.zipCode}
+  />
+</div>
+```
+
+#### Use address
+```javascript
+<div className="form-inline">
+  <ZipCodeTW displayType='display'
+             countyValue={this.state.county}
+             districtValue={this.state.district}
+             zipCodeValue={this.state.zipCode}
+             address={this.state.address}
+  />
+</div>
+```
+#### Use fullAddress
+```javascript
+<div className="form-inline">
+  <ZipCodeTW displayType='display'
+             countyValue={this.state.county}
+             districtValue={this.state.district}
+             zipCodeValue={this.state.zipCode}
+             fullAddress={fullAddress}
+  />
+</div>
+```

@@ -1,7 +1,7 @@
 # zipcode-tw-react
 
 提供台灣縣市、行政區下拉選單以及郵遞區號輸入欄位組合的React Component  
-藉由RawData快速進行郵遞區號切換
+藉由RawData快速進行郵遞區號切換，並提供地址合併顯示。
 
 ## Demo
 Tyr it online: https://chris-tsai.github.io/
@@ -18,7 +18,7 @@ or use package.json
 ```bash
 "dependencies": {
       ...
-    + "zipcode-tw-react": "^1.0.6",
+    + "zipcode-tw-react": "^1.1.0",
  },
 ```
 
@@ -33,7 +33,7 @@ import {ZipCodeTW} from "zipcode-tw-react";
 ```
 Example : [zipcode-tw-react-example](https://github.com/Chris-Tsai/zipcode-tw-react/tree/master/_example) 
 
-## Prop
+## Props
 
 ###### Field
 
@@ -49,9 +49,9 @@ zipCodeValue | string | |
 countyClass | string |'form-control' |
 countyStyle | object | {} |
 districtClass | string |'form-control' |
-districtStyle | object | `displayType= 'text'時預設為 {marginLeft:'5px', minWidth:'107px', paddingRight:'0px'}` |
+districtStyle | object | displayType= 'text'<br/>預設為 {marginLeft:'5px', minWidth:'107px', paddingRight:'0px'} |
 zipClass | string | 'form-control'|
-zipStyle | object | `displayType= 'text'時預設為 {marginLeft:'5px', width: '50px'}`|
+zipStyle | object | displayType= 'text'<br/>預設為 {marginLeft:'5px', width: '50px'}|
 zipCodePlaceholder | string | |
 fullAddress | string | | 完整地址(優化顯示)
 address | string | | 路段地址資訊(優化顯示)
@@ -68,7 +68,7 @@ addressStyle | object | {} |
  handleBlurZipCode | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
  handleZipCodeNotExists | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, origZipCode}
 
+<!--
 ## Stargazers over time
-
 [![Stargazers over time](https://starcharts.herokuapp.com/Chris-Tsai/zipcode-tw-react.svg)](https://starcharts.herokuapp.com/Chris-Tsai/zipcode-tw-react)
-      
+-->

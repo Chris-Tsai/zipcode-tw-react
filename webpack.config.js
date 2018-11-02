@@ -17,6 +17,9 @@ module.exports = function (app = "app.js") {
           path.resolve(__dirname, 'node_modules')
         ],
         loaders: ['babel-loader']
+      }, {
+        test: /\.css$/,
+        loader: "style-loader!css-loader"
       }]
     },
     plugins: [],

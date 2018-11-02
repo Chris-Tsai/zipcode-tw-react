@@ -4,6 +4,7 @@ import es6BindAll from "es6bindall";
 import {Panel, Table} from "react-bootstrap";
 import ZipCodeTW from "./es/zipcode/ZipCodeTW";
 import swal from 'sweetalert2';
+import './css/demo.css';
 
 class ZipCodeTWTest extends React.Component {
 
@@ -14,10 +15,10 @@ class ZipCodeTWTest extends React.Component {
       countyName1: 'countyValue1',
       countyValue1: '台北市',
       districtName1: 'districtValue1',
-      districtValue1: '中正區',
+      districtValue1: '中山區',
       zipCodeName1: 'zipCodeValue1',
-      zipCodeValue1: '100',
-      address: '',
+      zipCodeValue1: '104',
+      address: '敬業三路20號',
       countyClass: 'form-control',
       countyStyle: undefined,
       districtClass: 'form-control',
@@ -31,7 +32,10 @@ class ZipCodeTWTest extends React.Component {
       handleDistrictChange: {},
       handleZipCodeChange: {},
       handleZipCodeBlur: {},
-      handleZipCodeNotExists: {}
+      handleZipCodeNotExists: {},
+      addressClass: 'form-control',
+      addressStyle: undefined,
+      addressStyleStr: '',
     };
     es6BindAll(this, ['handleClick', 'handleCountyChange', 'handleDistrictChange'
       , 'handleZipCodeChange', 'handleZipCodeBlur', 'handleChange', 'handleChangeObj', 'handleZipCodeNotExists']);
@@ -50,7 +54,7 @@ class ZipCodeTWTest extends React.Component {
     }
   }
 
-  handleClick(e) {
+  handleClick() {
     let show = this.state.show;
     let displayType = this.state.displayType;
     this.setState({
@@ -95,11 +99,23 @@ class ZipCodeTWTest extends React.Component {
     let addressShow = this.state.displayType === 'display' ? 'none' : 'inline';
     return (
         <div style={{width:'50%', margin: 'auto'}}>
-          <h1> Live Demo </h1>
+          <div className="form-inline">
+            <div style={{
+              fontSize: '36px',
+            }}> Live Demo
+              <div className="pull-right" style={{
+                fontSize: '14px', marginTop:'30px'
+              }}>
+                <a href="https://github.com/Chris-Tsai/zipcode-tw-react">Github</a>
+                <a href="https://www.npmjs.com/package/zipcode-tw-react"
+                   style={{marginLeft: '10px'}}>Npmjs</a>
+              </div>
+            </div>
+          </div>
           <Panel bsStyle="primary">
             <Panel.Heading>ZipCodeTW with Bootstrap CSS </Panel.Heading>
             <Panel.Body>
-              <label> ZipCodeTW with {'<div className="form-inline">'}</label>
+              <h4>DisplayType: 'text'</h4>
               <div className="form-inline">
                 <ZipCodeTW displayType={this.state.displayType}
                            countyFieldName={this.state.countyName1}
@@ -119,9 +135,8 @@ class ZipCodeTWTest extends React.Component {
                            handleChangeZipCode={this.handleZipCodeChange}
                            handleBlurZipCode={this.handleZipCodeBlur}
                            handleZipCodeNotExists={this.handleZipCodeNotExists}
-                           fullAddress={fullAddress}
-                           address={this.state.address}
                 />
+                <label style={{marginLeft:'15px'}}>address</label>
                 <input name="address" value={this.state.address}
                        className="form-control"
                        placeholder="輸入地址"
@@ -130,17 +145,61 @@ class ZipCodeTWTest extends React.Component {
                 />
               </div>
               <br/>
-              <div>
-                <button className="btn-xs btn-success" onClick={this.handleClick}>Change DisplayType</button>
+              <div className="form-group">
+                <h4>DisplayType: 'display'</h4>
+                <label>No use address</label>
+                <div className="form-inline">
+                  <ZipCodeTW displayType='display'
+                             countyFieldName={this.state.countyName1}
+                             countyValue={this.state.countyValue1}
+                             districtFieldName={this.state.districtName1}
+                             districtValue={this.state.districtValue1}
+                             zipCodeFieldName={this.state.zipCodeName1}
+                             zipCodeValue={this.state.zipCodeValue1}
+                  />
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Use address</label>
+                <div className="form-inline">
+                  <ZipCodeTW displayType='display'
+                             countyFieldName={this.state.countyName1}
+                             countyValue={this.state.countyValue1}
+                             districtFieldName={this.state.districtName1}
+                             districtValue={this.state.districtValue1}
+                             zipCodeFieldName={this.state.zipCodeName1}
+                             zipCodeValue={this.state.zipCodeValue1}
+                             address={this.state.address}
+                             addressClass={this.state.addressClass}
+                             addressStyle={this.state.addressStyle}
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Use fullAddress</label>
+                <div className="form-inline">
+                  <ZipCodeTW displayType='display'
+                             countyFieldName={this.state.countyName1}
+                             countyValue={this.state.countyValue1}
+                             districtFieldName={this.state.districtName1}
+                             districtValue={this.state.districtValue1}
+                             zipCodeFieldName={this.state.zipCodeName1}
+                             zipCodeValue={this.state.zipCodeValue1}
+                             fullAddress={fullAddress}
+                             addressClass={this.state.addressClass}
+                             addressStyle={this.state.addressStyle}
+                  />
+                </div>
               </div>
 
               <h4><label> You can change CSS or Style</label></h4>
               <Table striped bordered condensed>
                 <thead>
                 <tr>
-                  <th>Prop</th>
+                  <th style={{width:'50px'}}>Prop</th>
                   <th>Value</th>
-                  <th>Prop</th>
+                  <th style={{width:'50px'}}>Prop</th>
                   <th>Value</th>
                 </tr>
                 </thead>
@@ -169,6 +228,14 @@ class ZipCodeTWTest extends React.Component {
                   <td><input type="text" className="form-control" name="zipCodeStyleStr"  value={this.state.zipCodeStyleStr} onChange={this.handleChangeObj} />
                   </td>
                 </tr>
+                <tr>
+                  <td>addressClass</td>
+                  <td><input type="text" className="form-control" name="addressClass"  value={this.state.addressClass} onChange={this.handleChange} />
+                  </td>
+                  <td>addressStyle</td>
+                  <td><input type="text" className="form-control" name="addressStyleStr"  value={this.state.addressStyleStr} onChange={this.handleChangeObj} />
+                  </td>
+                </tr>
                 </tbody>
               </Table>
 
@@ -184,15 +251,7 @@ class ZipCodeTWTest extends React.Component {
               <label>handleZipCodeNotExists</label>
               <div><pre>{zipNotExistsRtn}</pre></div>
             </Panel.Body>
-            <Panel.Footer>
-              <div style={{textAlign: 'center'}}>
-                <a href="https://github.com/Chris-Tsai/zipcode-tw-react">Github</a>
-                <a href="https://www.npmjs.com/package/zipcode-tw-react" style={{marginLeft:'10px'}}>Npmjs</a>
-              </div>
-            </Panel.Footer>
           </Panel>
-
-
         </div>
     );
   }

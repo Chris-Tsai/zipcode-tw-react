@@ -1,7 +1,8 @@
 import es6BindAll from "es6bindall";
 import React from "react";
 import swal from "sweetalert2";
-import {ZipCodeTW} from "zipcode-tw-react"
+// import {ZipCodeTW} from "zipcode-tw-react"
+import ZipCodeTW from "./zipcode/ZipCodeTW";
 
 class Address extends React.Component {
 
@@ -10,10 +11,10 @@ class Address extends React.Component {
 
     this.state = {
       displayType: 'text',
-      zipName: '台北市',
-      zipDistrict: '北投區',
-      zipCode: '112',
-      address: ''
+      county: '台北市',
+      district: '中山區',
+      zipCode: '104',
+      address: '敬業三路20號'
     }
 
     es6BindAll(this,
@@ -48,17 +49,15 @@ class Address extends React.Component {
 
   render() {
     let addressShow = this.state.displayType === 'display' ? 'none' : 'inline';
+    let fullAddress = this.state.county+this.state.district+this.state.address;
     return (
         <>
           <div className="form-group">
             <label>DisplayType: 'text'</label>
             <div className="form-inline">
               <ZipCodeTW displayType={this.state.displayType}
-                         countyFieldName="zipName"
-                         countyValue={this.state.zipName}
-                         districtFieldName="zipDistrict"
-                         districtValue={this.state.zipDistrict}
-                         zipCodeFieldName="zipCode"
+                         countyValue={this.state.county}
+                         districtValue={this.state.district}
                          zipCodeValue={this.state.zipCode}
                          handleChangeCounty={this.handleZipCodeChange}
                          handleChangeDistrict={this.handleZipCodeChange}
@@ -66,6 +65,7 @@ class Address extends React.Component {
                          handleBlurZipCode={this.handleZipCodeChange}
                          handleZipCodeNotExists={this.handleZipCodeNotExists}
               />
+              <label style={{marginLeft:'15px'}}>address</label>
               <input name="address" value={this.state.address}
                      className="form-control"
                      placeholder="輸入地址"
@@ -76,26 +76,38 @@ class Address extends React.Component {
           </div>
           <br/>
           <div className="form-group">
-            <label>DisplayType: 'display'</label>
+            <h4>DisplayType: 'display'</h4>
+            <label>No use address</label>
             <div className="form-inline">
               <ZipCodeTW displayType='display'
-                         countyFieldName="zipName"
-                         countyValue={this.state.zipName}
-                         districtFieldName="zipDistrict"
-                         districtValue={this.state.zipDistrict}
-                         zipCodeFieldName="zipCode"
+                         countyValue={this.state.county}
+                         districtValue={this.state.district}
                          zipCodeValue={this.state.zipCode}
-                         handleChangeCounty={this.handleZipCodeChange}
-                         handleChangeDistrict={this.handleZipCodeChange}
-                         handleChangeZipCode={this.handleZipCodeChange}
-                         handleBlurZipCode={this.handleZipCodeChange}
-                         handleZipCodeNotExists={this.handleZipCodeNotExists}
               />
-              <input name="address" value={this.state.address}
-                     className="form-control"
-                     placeholder="輸入地址"
-                     style={{marginLeft:'5px', width: '300px', display: addressShow}}
-                     onChange={this.handleChange}
+            </div>
+          </div>
+          <br/>
+          <div className="form-group">
+            <label>Use address</label>
+            <div className="form-inline">
+              <ZipCodeTW displayType='display'
+                         countyValue={this.state.county}
+                         districtValue={this.state.district}
+                         zipCodeValue={this.state.zipCode}
+                         address={this.state.address}
+              />
+            </div>
+          </div>
+
+          <br/>
+          <div className="form-group">
+            <label>Use fullAddress</label>
+            <div className="form-inline">
+              <ZipCodeTW displayType='display'
+                         countyValue={this.state.county}
+                         districtValue={this.state.district}
+                         zipCodeValue={this.state.zipCode}
+                         fullAddress={fullAddress}
               />
             </div>
           </div>
