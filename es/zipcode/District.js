@@ -43,8 +43,8 @@ export default class District extends React.Component {
               <>
               <span className={districtClass}
                     style={districtStyle}
-                    readOnly="true"
-                    disabled="true"
+                    readOnly={true}
+                    disabled={true}
               >{value}</span>
               <input type="hidden" name={fieldName} value={value}/>
               </>

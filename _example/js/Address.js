@@ -1,7 +1,7 @@
 import es6BindAll from "es6bindall";
 import React from "react";
-import {ZipCodeTW} from "zipcode-tw-react";
 import swal from "sweetalert2";
+import {ZipCodeTW} from "zipcode-tw-react"
 
 class Address extends React.Component {
 
@@ -11,9 +11,8 @@ class Address extends React.Component {
     this.state = {
       displayType: 'text',
       zipName: '台北市',
-      zipDistrict: '中正區',
-      zipCode: '100',
-      initClass: 'form-control',
+      zipDistrict: '北投區',
+      zipCode: '112',
     }
 
     es6BindAll(this,
@@ -44,26 +43,45 @@ class Address extends React.Component {
 
   render() {
     return (
-        <div className="form-group">
-          <div className="form-inline">
-            <ZipCodeTW displayType={this.state.displayType}
-                       countyFieldName="zipName"
-                       countyValue={this.state.zipName}
-                       districtFieldName="zipDistrict"
-                       districtValue={this.state.zipDistrict}
-                       zipCodeFieldName="zipCode"
-                       zipCodeValue={this.state.zipCode}
-                       countyClass={this.state.initClass}
-                       districtClass={this.state.initClass}
-                       zipClass={this.state.initClass}
-                       handleChangeCounty={this.handleZipCodeChange}
-                       handleChangeDistrict={this.handleZipCodeChange}
-                       handleChangeZipCode={this.handleZipCodeChange}
-                       handleBlurZipCode={this.handleZipCodeChange}
-                       handleZipCodeNotExists={this.handleZipCodeNotExists}
-            />
+        <>
+          <div className="form-group">
+            <label>DisplayType: 'text'</label>
+            <div className="form-inline">
+              <ZipCodeTW displayType={this.state.displayType}
+                         countyFieldName="zipName"
+                         countyValue={this.state.zipName}
+                         districtFieldName="zipDistrict"
+                         districtValue={this.state.zipDistrict}
+                         zipCodeFieldName="zipCode"
+                         zipCodeValue={this.state.zipCode}
+                         handleChangeCounty={this.handleZipCodeChange}
+                         handleChangeDistrict={this.handleZipCodeChange}
+                         handleChangeZipCode={this.handleZipCodeChange}
+                         handleBlurZipCode={this.handleZipCodeChange}
+                         handleZipCodeNotExists={this.handleZipCodeNotExists}
+              />
+            </div>
           </div>
-        </div>
+          <br/>
+          <div className="form-group">
+            <label>DisplayType: 'display'</label>
+            <div className="form-inline">
+              <ZipCodeTW displayType='display'
+                         countyFieldName="zipName"
+                         countyValue={this.state.zipName}
+                         districtFieldName="zipDistrict"
+                         districtValue={this.state.zipDistrict}
+                         zipCodeFieldName="zipCode"
+                         zipCodeValue={this.state.zipCode}
+                         handleChangeCounty={this.handleZipCodeChange}
+                         handleChangeDistrict={this.handleZipCodeChange}
+                         handleChangeZipCode={this.handleZipCodeChange}
+                         handleBlurZipCode={this.handleZipCodeChange}
+                         handleZipCodeNotExists={this.handleZipCodeNotExists}
+              />
+            </div>
+          </div>
+        </>
     );
   }
 }

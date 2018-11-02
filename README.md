@@ -18,7 +18,7 @@ or use package.json
 ```bash
 "dependencies": {
       ...
-    + "zipcode-tw-react": "^1.0.0",
+    + "zipcode-tw-react": "^1.0.5",
  },
 ```
 
@@ -46,11 +46,11 @@ districtFieldName | string |'district' |
 districtValue | string | |
 zipCodeFieldName | string |'zipCode' |
 zipCodeValue | string | |
-countyClass | string | |
-countyStyle | object | {marginLeft:'5px'} |
-districtClass | string | |
-districtStyle | object | {marginLeft:'5px', minWidth: '60px'} |
-zipClass | string | |
+countyClass | string |'form-control' |
+countyStyle | object | {} |
+districtClass | string |'form-control' |
+districtStyle | object | {marginLeft:'5px', minWidth:'107px', paddingRight:'0px'} |
+zipClass | string | 'form-control'|
 zipStyle | object | {marginLeft:'5px', width: '50px'}|
 zipCodePlaceholder | string | |
 

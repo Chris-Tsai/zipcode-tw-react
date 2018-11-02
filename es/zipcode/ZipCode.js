@@ -53,8 +53,8 @@ export default class ZipCode extends React.Component {
               <>
                 <span className={zipClass}
                       style={nowStyle}
-                      readOnly="true"
-                      disabled="true"
+                      readOnly={true}
+                      disabled={true}
                 >{value}</span>
                 <input type="hidden" name={fieldName} value={value}/>
               </>

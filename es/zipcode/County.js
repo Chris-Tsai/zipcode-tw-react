@@ -44,8 +44,8 @@ export default class County extends React.Component {
               <>
                 <span className={countyClass}
                       style={countyStyle}
-                      readOnly="true"
-                      disabled="true"
+                      readOnly={true}
+                      disabled={true}
                 >{value}</span>
                 <input type="hidden" name={fieldName} value={value}/>
               </>

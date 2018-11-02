@@ -24,10 +24,27 @@ export default class ZipCodeTW extends React.Component {
       zipCodePlaceholder: '',
     };
     es6BindAll(this, ['handleChangeCounty', 'handleChangeDistrict',
-      'handleChangeZipCode', 'handleBlurZipCode', 'findCountyAndDistrictByZipCode']);
+      'handleChangeZipCode', 'handleBlurZipCode', 'findCountyAndDistrictByZipCode', 'initData']);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      countyValue,
+      districtValue,
+      zipCodeValue
+    } = this.props;
+    if(prevProps.countyValue !== countyValue
+        || prevProps.districtValue !== districtValue
+        || prevProps.zipCodeValue !== zipCodeValue) {
+      this.initData();
+    }
   }
 
   componentDidMount() {
+    this.initData();
+  }
+
+  initData(){
     const counties = Object.keys(RawData);
     const {
       countyValue,
@@ -159,16 +176,19 @@ export default class ZipCodeTW extends React.Component {
   }
 
   render() {
-    const {zipStyle, countyStyle, districtStyle} = this.props;
-    const nowCountyStyle = typeof (countyStyle) != 'undefined' ? countyStyle:{marginLeft:'5px'};
-    const nowDistrictStyle = typeof (districtStyle) != 'undefined' ? districtStyle:{marginLeft:'5px', minWidth: '60px'};
+    const {zipStyle, countyStyle, districtStyle, zipClass, countyClass, districtClass} = this.props;
+    const nowCountyStyle = typeof (countyStyle) != 'undefined' ? countyStyle:{};
+    const nowDistrictStyle = typeof (districtStyle) != 'undefined' ? districtStyle:{marginLeft:'5px', minWidth:'107px', paddingRight:'0px'};
     const nowZipStyle = typeof (zipStyle) != 'undefined' ? zipStyle:{marginLeft:'5px', width: '50px'};
+    const nowCountyClass = typeof (countyClass) != 'undefined' ? countyClass: 'form-control';
+    const nowDistrictClass = typeof (districtClass) != 'undefined' ? districtClass: 'form-control';
+    const nowZipClass = typeof (zipClass) != 'undefined' ? zipClass: 'form-control';
     return (
         <>
           {this.props.displayType === 'display' ?
               <ZipCode fieldName={this.props.zipCodeFieldName}
                        value={this.props.zipCodeValue}
-                       zipClass={this.props.zipClass}
+                       zipClass={nowZipClass}
                        zipStyle={nowZipStyle}
                        placeholder={this.props.zipCodePlaceholder}
                        displayType={this.props.displayType}
@@ -179,15 +199,15 @@ export default class ZipCodeTW extends React.Component {
 
           <County fieldName={this.props.countyFieldName}
                   value={this.props.countyValue}
-                  countyClass={this.props.countyClass}
+                  countyClass={nowCountyClass}
                   countyStyle={nowCountyStyle}
                   dataOptions={this.state.counties}
                   displayType={this.props.displayType}
                   onChange={this.handleChangeCounty}
           />
           <District fieldName={this.props.districtFieldName}
-                    value={this.state.district}
-                    districtClass={this.props.districtClass}
+                    value={this.props.districtValue}
+                    districtClass={nowDistrictClass}
                     districtStyle={nowDistrictStyle}
                     displayType={this.props.displayType}
                     dataOptions={this.state.districts}
@@ -195,8 +215,8 @@ export default class ZipCodeTW extends React.Component {
           />
           {this.props.displayType === 'text' ?
             <ZipCode fieldName={this.props.zipCodeFieldName}
-                     value={this.state.zipCode}
-                     zipClass={this.props.zipClass}
+                     value={this.props.zipCodeValue}
+                     zipClass={nowZipClass}
                      zipStyle={nowZipStyle}
                      placeholder={this.props.zipCodePlaceholder}
                      displayType={this.props.displayType}
