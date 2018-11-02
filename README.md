@@ -39,7 +39,7 @@ Example : [zipcode-tw-react-example](https://github.com/Chris-Tsai/zipcode-tw-re
 
  Name | Type | Default | Description
 :--- | :--- | :--- | :---
-displayType| one of: 'text', 'display' | 'text' | displayType= display時，以span顯示且包含readOnly & disabled屬性
+displayType| one of: 'text', 'display' | 'text' | displayType= display<br/>以span顯示且包含readOnly & disabled屬性<br/>提供fullAddress、address參數合併顯示郵遞區號及地址
 countyFieldName | string |'county' |
 countyValue | string | |
 districtFieldName | string |'district' |
@@ -62,11 +62,11 @@ addressStyle | object | {} |
 
  Name | Return | Description
  :---  | :--- | :--- 
- handleChangeCounty | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
- handleChangeDistrict | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
- handleChangeZipCode | {zipFieldName, zipValue}
- handleBlurZipCode | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue}
- handleZipCodeNotExists | {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, origZipCode}
+ handleChangeCounty | { countyFieldName, countyValue, <br/>districtFieldName, districtValue, <br/>zipFieldName, zipValue }
+ handleChangeDistrict | { countyFieldName, countyValue, <br/>districtFieldName, districtValue, <br/>zipFieldName, zipValue }
+ handleChangeZipCode | { zipFieldName, zipValue }
+ handleBlurZipCode | { countyFieldName, countyValue, <br/>districtFieldName, districtValue, <br/>zipFieldName, zipValue }
+ handleZipCodeNotExists | { countyFieldName, countyValue, <br/>districtFieldName, districtValue, <br/>zipFieldName, zipValue, origZipCode }
 
 <!--
 ## Stargazers over time
