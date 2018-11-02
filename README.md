@@ -18,7 +18,7 @@ or use package.json
 ```bash
 "dependencies": {
       ...
-    + "zipcode-tw-react": "^1.0.5",
+    + "zipcode-tw-react": "^1.0.6",
  },
 ```
 
@@ -39,7 +39,7 @@ Example : [zipcode-tw-react-example](https://github.com/Chris-Tsai/zipcode-tw-re
 
  Name | Type | Default | Description
 :--- | :--- | :--- | :---
-displayType| one of: 'text', 'display' | 'text' | displayType = display時，以span顯示且包含readOnly & disabled屬性
+displayType| one of: 'text', 'display' | 'text' | displayType= display時，以span顯示且包含readOnly & disabled屬性
 countyFieldName | string |'county' |
 countyValue | string | |
 districtFieldName | string |'district' |
@@ -49,10 +49,12 @@ zipCodeValue | string | |
 countyClass | string |'form-control' |
 countyStyle | object | {} |
 districtClass | string |'form-control' |
-districtStyle | object | {marginLeft:'5px', minWidth:'107px', paddingRight:'0px'} |
+districtStyle | object | `displayType= 'text'時預設為 {marginLeft:'5px', minWidth:'107px', paddingRight:'0px'}` |
 zipClass | string | 'form-control'|
-zipStyle | object | {marginLeft:'5px', width: '50px'}|
+zipStyle | object | `displayType= 'text'時預設為 {marginLeft:'5px', width: '50px'}`|
 zipCodePlaceholder | string | |
+fullAddress | string | | 完整地址(優化顯示)
+address | string | | 路段地址資訊(優化顯示)
 
 ###### Method
 

@@ -13,10 +13,15 @@ class Address extends React.Component {
       zipName: '台北市',
       zipDistrict: '北投區',
       zipCode: '112',
+      address: ''
     }
 
     es6BindAll(this,
-        ['handleZipCodeChange', 'handleZipCodeNotExists']);
+        ['handleZipCodeChange', 'handleZipCodeNotExists', 'handleChange']);
+  }
+
+  handleChange(e){
+    this.setState({[e.target.name]: e.target.value});
   }
 
   // 變更地址資訊
@@ -42,6 +47,7 @@ class Address extends React.Component {
   }
 
   render() {
+    let addressShow = this.state.displayType === 'display' ? 'none' : 'inline';
     return (
         <>
           <div className="form-group">
@@ -59,6 +65,12 @@ class Address extends React.Component {
                          handleChangeZipCode={this.handleZipCodeChange}
                          handleBlurZipCode={this.handleZipCodeChange}
                          handleZipCodeNotExists={this.handleZipCodeNotExists}
+              />
+              <input name="address" value={this.state.address}
+                     className="form-control"
+                     placeholder="輸入地址"
+                     style={{marginLeft:'5px', width: '300px', display: addressShow}}
+                     onChange={this.handleChange}
               />
             </div>
           </div>
@@ -78,6 +90,12 @@ class Address extends React.Component {
                          handleChangeZipCode={this.handleZipCodeChange}
                          handleBlurZipCode={this.handleZipCodeChange}
                          handleZipCodeNotExists={this.handleZipCodeNotExists}
+              />
+              <input name="address" value={this.state.address}
+                     className="form-control"
+                     placeholder="輸入地址"
+                     style={{marginLeft:'5px', width: '300px', display: addressShow}}
+                     onChange={this.handleChange}
               />
             </div>
           </div>

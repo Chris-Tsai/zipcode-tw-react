@@ -1,6 +1,6 @@
 {
   "name": "zipcode-tw-react",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -50,7 +50,10 @@
   "keywords": [
     "react",
     "zipcode",
-    "taiwan"
+    "taiwan",
+    "tw",
+    "郵遞區號",
+    "台灣"
   ],
   "author": "Chris.Tsai",
   "license": "MIT",

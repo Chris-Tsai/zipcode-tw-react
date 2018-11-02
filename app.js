@@ -11,27 +11,22 @@ class ZipCodeTWTest extends React.Component {
     super();
     this.state = {
       displayType: 'text',
-      countyName: 'countyValue',
-      countyValue: '',
-      districtName: 'districtValue',
-      districtValue: '',
-      zipCodeName: 'zipCodeValue',
-      zipCodeValue: '',
       countyName1: 'countyValue1',
-      countyValue1: '',
+      countyValue1: '台北市',
       districtName1: 'districtValue1',
-      districtValue1: '',
+      districtValue1: '中正區',
       zipCodeName1: 'zipCodeValue1',
-      zipCodeValue1: '',
+      zipCodeValue1: '100',
+      address: '',
       countyClass: 'form-control',
-      countyStyle: {width: '100px'},
+      countyStyle: undefined,
       districtClass: 'form-control',
-      districtStyle: {width: '100px'},
+      districtStyle: undefined,
       zipCodeClass: 'form-control',
-      zipCodeStyle: {width: '100px'},
-      countyStyleStr:'width: \'100px\'',
-      districtStyleStr:'width: \'100px\'',
-      zipCodeStyleStr:'width: \'100px\'',
+      zipCodeStyle: undefined,
+      countyStyleStr:'',
+      districtStyleStr:'marginLeft:\'5px\', minWidth:\'107px\', paddingRight:\'0px\'',
+      zipCodeStyleStr:'marginLeft:\'5px\', width: \'50px\'',
       handleCountyChange: {},
       handleDistrictChange: {},
       handleZipCodeChange: {},
@@ -96,6 +91,8 @@ class ZipCodeTWTest extends React.Component {
     let zipCodeRtn = JSON.stringify(this.state.handleZipCodeChange);
     let zipBlurRtn = JSON.stringify(this.state.handleZipCodeBlur);
     let zipNotExistsRtn = JSON.stringify(this.state.handleZipCodeNotExists);
+    let fullAddress = this.state.countyValue1+this.state.districtValue1+this.state.address;
+    let addressShow = this.state.displayType === 'display' ? 'none' : 'inline';
     return (
         <div style={{width:'50%', margin: 'auto'}}>
           <h1> Live Demo </h1>
@@ -122,15 +119,22 @@ class ZipCodeTWTest extends React.Component {
                            handleChangeZipCode={this.handleZipCodeChange}
                            handleBlurZipCode={this.handleZipCodeBlur}
                            handleZipCodeNotExists={this.handleZipCodeNotExists}
+                           fullAddress={fullAddress}
+                           address={this.state.address}
+                />
+                <input name="address" value={this.state.address}
+                       className="form-control"
+                       placeholder="輸入地址"
+                       style={{marginLeft:'5px', width: '300px', display: addressShow}}
+                       onChange={this.handleChange}
                 />
               </div>
               <br/>
               <div>
                 <button className="btn-xs btn-success" onClick={this.handleClick}>Change DisplayType</button>
               </div>
-              <br/>
 
-              <label> You can change CSS or Style</label>
+              <h4><label> You can change CSS or Style</label></h4>
               <Table striped bordered condensed>
                 <thead>
                 <tr>
