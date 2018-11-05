@@ -18,7 +18,7 @@ or use package.json
 ```bash
 "dependencies": {
       ...
-    + "zipcode-tw-react": "^1.1.0",
+    + "zipcode-tw-react": "^1.1.1",
  },
 ```
 
@@ -39,7 +39,8 @@ Example : [zipcode-tw-react-example](https://github.com/Chris-Tsai/zipcode-tw-re
 
  Name | Type | Default | Description
 :--- | :--- | :--- | :---
-displayType| one of: 'text', 'display' | 'text' | displayType= display<br/>以span顯示且包含readOnly & disabled屬性<br/>提供fullAddress、address參數合併顯示郵遞區號及地址
+displayType| one of: 'text', 'display' | 'text' | displayType= display<br/>1. 以span顯示且包含readOnly & disabled屬性<br/>2. 提供fullAddress、address參數合併顯示郵遞區號及地址
+zipCodePositionLast| bool | true| Decide zipCode input text position, <br/>when displayType= display, position is fixed 
 countyFieldName | string |'county' |
 countyValue | string | |
 districtFieldName | string |'district' |

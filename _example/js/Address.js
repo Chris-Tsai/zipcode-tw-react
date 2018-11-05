@@ -73,6 +73,22 @@ class Address extends React.Component {
               />
             </div>
           </div>
+          <div className="form-group">
+            <label>Use zipCodePositionLast: false</label>
+            <div className="form-inline">
+              <ZipCodeTW displayType={this.state.displayType}
+                         countyValue={this.state.county}
+                         districtValue={this.state.district}
+                         zipCodeValue={this.state.zipCode}
+                         handleChangeCounty={this.handleZipCodeChange}
+                         handleChangeDistrict={this.handleZipCodeChange}
+                         handleChangeZipCode={this.handleZipCodeChange}
+                         handleBlurZipCode={this.handleZipCodeChange}
+                         handleZipCodeNotExists={this.handleZipCodeNotExists}
+                         zipCodePositionLast={false}
+              />
+            </div>
+          </div>
           <br/>
           <div className="form-group">
             <h4>DisplayType: 'display'</h4>

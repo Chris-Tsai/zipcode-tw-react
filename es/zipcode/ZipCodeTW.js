@@ -189,14 +189,15 @@ export default class ZipCodeTW extends React.Component {
   }
 
   render() {
-    const {zipStyle, countyStyle, districtStyle, zipClass, countyClass, districtClass, displayType} = this.props;
+    const {zipStyle, countyStyle, districtStyle, zipClass, countyClass, districtClass, displayType, zipCodePositionLast} = this.props;
     const {fullAddress, address, addressClass, addressStyle} = this.props;
     const displayTypeFlag = (displayType === 'display') ? true : false;
-    const nowCountyStyle = typeof (countyStyle) != 'undefined' ? countyStyle:{};
+    const nowZipCodePositionLast = typeof (zipCodePositionLast) != 'undefined' ? zipCodePositionLast : true;
+    const nowCountyStyle = typeof (countyStyle) != 'undefined' ? countyStyle: nowZipCodePositionLast ? {} : {marginLeft:'5px'};
     const nowDistrictStyle =
         typeof (districtStyle) != 'undefined' ? districtStyle: displayTypeFlag ? {} : {marginLeft:'5px', minWidth:'107px', paddingRight:'0px'};
     const nowZipStyle =
-        typeof (zipStyle) != 'undefined' ? zipStyle: displayTypeFlag ? {} : {marginLeft:'5px', width: '50px'};
+        typeof (zipStyle) != 'undefined' ? zipStyle: (!displayTypeFlag && !nowZipCodePositionLast) ? {width: '50px'} :  {marginLeft:'5px', width: '50px'};
     const nowCountyClass =
         typeof (countyClass) != 'undefined' ? countyClass: 'form-control';
     const nowDistrictClass =
@@ -206,17 +207,18 @@ export default class ZipCodeTW extends React.Component {
     const nowAddressClass =
         typeof (addressClass) != 'undefined' ? addressClass: 'form-control';
 
+
     return (
         <>
-          {displayTypeFlag ?
+          {displayTypeFlag || (!displayTypeFlag && !nowZipCodePositionLast)  ?
               <ZipCode fieldName={this.state.zipCodeFieldName}
                        value={this.props.zipCodeValue}
                        zipClass={nowZipClass}
                        zipStyle={nowZipStyle}
                        placeholder={this.props.zipCodePlaceholder}
                        displayType={displayType}
-                       onChange={this.props.handleChangeZipCode}
-                       onBlur={this.props.handleBlurZipCode}
+                       onChange={this.handleChangeZipCode}
+                       onBlur={this.handleBlurZipCode}
               /> : ''
           }
 
@@ -241,7 +243,7 @@ export default class ZipCodeTW extends React.Component {
                           dataOptions={this.state.districts}
                           onChange={this.handleChangeDistrict}
                 />
-                {!displayTypeFlag ?
+                {!displayTypeFlag && nowZipCodePositionLast ?
                     <ZipCode fieldName={this.state.zipCodeFieldName}
                              value={this.props.zipCodeValue}
                              zipClass={nowZipClass}
@@ -267,6 +269,7 @@ export default class ZipCodeTW extends React.Component {
 ZipCodeTW.propTypes = {
   displayType: PropTypes.oneOf(['text', 'display']).isRequired,
   fullAddress: PropTypes.string,
+  zipCodePositionLast: PropTypes.bool,
   address: PropTypes.string,
   countyFieldName: PropTypes.string,
   countyValue: PropTypes.string,

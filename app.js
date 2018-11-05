@@ -144,7 +144,32 @@ class ZipCodeTWTest extends React.Component {
                        onChange={this.handleChange}
                 />
               </div>
-              <br/>
+
+              <div className="form-group">
+                <label>Use zipCodePositionLast: false</label>
+                <div className="form-inline">
+                  <ZipCodeTW displayType={this.state.displayType}
+                             countyFieldName={this.state.countyName1}
+                             countyValue={this.state.countyValue1}
+                             districtFieldName={this.state.districtName1}
+                             districtValue={this.state.districtValue1}
+                             zipCodeFieldName={this.state.zipCodeName1}
+                             zipCodeValue={this.state.zipCodeValue1}
+                             countyClass={this.state.countyClass}
+                             countyStyle={this.state.countyStyle}
+                             districtClass={this.state.districtClass}
+                             districtStyle={this.state.districtStyle}
+                             zipClass={this.state.zipCodeClass}
+                             zipStyle={this.state.zipCodeStyle}
+                             handleChangeCounty={this.handleCountyChange}
+                             handleChangeDistrict={this.handleDistrictChange}
+                             handleChangeZipCode={this.handleZipCodeChange}
+                             handleBlurZipCode={this.handleZipCodeBlur}
+                             handleZipCodeNotExists={this.handleZipCodeNotExists}
+                             zipCodePositionLast={false}
+                  />
+                </div>
+              </div>
               <div className="form-group">
                 <h4>DisplayType: 'display'</h4>
                 <label>No use address</label>
