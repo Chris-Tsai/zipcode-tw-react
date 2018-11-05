@@ -34,16 +34,41 @@
     "eslint": "^5.8.0",
     "eslint-plugin-react": "^7.11.1",
     "babel-eslint": "^10.0.1",
+    "jest": "^23.6.0",
+    "babel-jest": "^23.6.0",
+    "react-test-renderer": "^16.6.0",
     "css-loader": "^0.28.11",
-    "style-loader": "^0.19.1"
+    "style-loader": "^0.19.1",
+    "check-node-version": "^3.2.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "redux-mock-store": "^1.5.3",
+    "redux": "^3.6.0",
+    "coveralls": "^3.0.2"
   },
   "scripts": {
     "lint": "eslint ./es/**/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "check-node-version --package && jest --coverage --coverageReporters=text-lcov | coveralls",
     "build": "node ./scripts/build.js",
     "start": "node ./scripts/start.js",
     "compile": "./node_modules/.bin/babel es -d lib",
     "release": "./node_modules/.bin/babel es -d lib && npm publish --access=public"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "es/**/*.js",
+      "!**/__tests__/**",
+      "!es/config_test/**",
+      "!es/data/**",
+      "!es/index.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  },
+  "engines": {
+    "node": ">=6.2.0",
+    "npm": ">=5.4.2"
   },
   "repository": {
     "type": "git",
