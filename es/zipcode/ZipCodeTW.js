@@ -1,6 +1,5 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import es6BindAll from "es6bindall";
 import District from "./District";
 import County from "./County";
 import ZipCode from "./ZipCode";
@@ -26,8 +25,6 @@ export default class ZipCodeTW extends React.Component {
       zipCode: 'zipCode',
       zipCodePlaceholder: '',
     };
-    es6BindAll(this, ['handleChangeCounty', 'handleChangeDistrict',
-      'handleChangeZipCode', 'handleBlurZipCode', 'findCountyAndDistrictByZipCode', 'initData']);
   }
 
   componentDidUpdate(prevProps) {
@@ -47,7 +44,7 @@ export default class ZipCodeTW extends React.Component {
     this.initData();
   }
 
-  initData(){
+  initData = () =>{
     const counties = Object.keys(RawData);
     const {
       countyValue,
@@ -87,7 +84,7 @@ export default class ZipCodeTW extends React.Component {
     });
   }
 
-  handleChangeCounty(county) {
+  handleChangeCounty = (county) => {
     const districts = Object.keys(RawData[county]).map((d) => d, []);
     let district = districts[0];
     let zipCode = RawData[county][districts[0]];
@@ -109,7 +106,7 @@ export default class ZipCodeTW extends React.Component {
     });
   }
 
-  handleChangeDistrict(district){
+  handleChangeDistrict = (district) =>{
     let zipCode = RawData[this.state.county][district];
     let {handleChangeDistrict} = this.props;
     let {countyFieldName, districtFieldName, zipCodeFieldName} = this.state;
@@ -127,7 +124,7 @@ export default class ZipCodeTW extends React.Component {
     });
   }
 
-  handleChangeZipCode(zipCode){
+  handleChangeZipCode = (zipCode) =>{
     let {handleChangeZipCode} = this.props;
     let {zipCodeFieldName} = this.state;
     this.setState({
@@ -141,7 +138,7 @@ export default class ZipCodeTW extends React.Component {
     });
   }
 
-  handleBlurZipCode(zipCode){
+  handleBlurZipCode = (zipCode) =>{
     const { countyN, districtN } = this.findCountyAndDistrictByZipCode(zipCode);
     let {handleZipCodeNotExists, handleBlurZipCode} = this.props;
     let {countyFieldName, districtFieldName, zipCodeFieldName} = this.state;
@@ -173,7 +170,7 @@ export default class ZipCodeTW extends React.Component {
     }
   }
 
-  findCountyAndDistrictByZipCode(zipCode){
+  findCountyAndDistrictByZipCode = (zipCode) =>{
     let rtn = {}
     Object.keys(RawData).forEach((countyN) => {
       Object.keys(RawData[countyN]).forEach((districtN) => {

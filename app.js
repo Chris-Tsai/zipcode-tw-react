@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import es6BindAll from "es6bindall";
 import {Panel, Table} from "react-bootstrap";
 import ZipCodeTW from "./es/zipcode/ZipCodeTW";
 import swal from 'sweetalert2';
@@ -37,15 +36,13 @@ class ZipCodeTWTest extends React.Component {
       addressStyle: undefined,
       addressStyleStr: '',
     };
-    es6BindAll(this, ['handleClick', 'handleCountyChange', 'handleDistrictChange'
-      , 'handleZipCodeChange', 'handleZipCodeBlur', 'handleChange', 'handleChangeObj', 'handleZipCodeNotExists']);
   }
 
-  handleChange(e){
+  handleChange = (e) =>{
     this.setState({[e.target.name]: e.target.value});
   }
 
-  handleChangeObj(e){
+  handleChangeObj = (e) =>{
     let name = e.target.name;
     try{
       this.setState({[name.substring(0, name.indexOf('Str'))]: eval('({' + e.target.value + '})'), [e.target.name]:e.target.value});
@@ -54,7 +51,7 @@ class ZipCodeTWTest extends React.Component {
     }
   }
 
-  handleClick() {
+  handleClick = (e) => {
     let show = this.state.show;
     let displayType = this.state.displayType;
     this.setState({
@@ -63,26 +60,26 @@ class ZipCodeTWTest extends React.Component {
     });
   }
 
-  handleCountyChange(e) {
+  handleCountyChange = (e) => {
     const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue } = e;
     this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleCountyChange:e, handleDistrictChange:{}, handleZipCodeChange: {}, handleZipCodeBlur:{}, handleZipCodeNotExists: {}});
   }
 
-  handleDistrictChange(e) {
+  handleDistrictChange = (e) =>{
     const {districtFieldName, districtValue, zipFieldName, zipValue } = e;
     this.setState({[zipFieldName]: zipValue, [districtFieldName]:districtValue, handleDistrictChange:e, handleCountyChange:{}, handleZipCodeChange: {}, handleZipCodeBlur:{}, handleZipCodeNotExists: {}});
   }
 
-  handleZipCodeChange(e) {
+  handleZipCodeChange = (e) =>{
     this.setState({[e.zipFieldName]:e.zipValue, handleZipCodeChange:e, handleDistrictChange:{}, handleCountyChange:{}, handleZipCodeBlur:{}, handleZipCodeNotExists: {}});
   }
 
-  handleZipCodeBlur(e) {
+  handleZipCodeBlur = (e) =>{
     const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue } = e;
     this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleZipCodeBlur:e, handleDistrictChange:{}, handleCountyChange:{}, handleZipCodeChange: {}, handleZipCodeNotExists: {}});
   }
 
-  handleZipCodeNotExists(e){
+  handleZipCodeNotExists = (e) =>{
     const { countyFieldName, countyValue,districtFieldName, districtValue, zipFieldName, zipValue, origZipValue } = e;
     this.setState({[zipFieldName]: zipValue, [countyFieldName]:countyValue, [districtFieldName]:districtValue, handleZipCodeNotExists:e, handleZipCodeBlur:{}, handleDistrictChange:{}, handleCountyChange:{}, handleZipCodeChange: {}});
 

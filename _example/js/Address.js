@@ -15,17 +15,14 @@ class Address extends React.Component {
       zipCode: '104',
       address: '敬業三路20號'
     }
-
-    es6BindAll(this,
-        ['handleZipCodeChange', 'handleZipCodeNotExists', 'handleChange']);
   }
 
-  handleChange(e){
+  handleChange = (e) =>{
     this.setState({[e.target.name]: e.target.value});
   }
 
   // 變更地址資訊
-  handleZipCodeChange(e) {
+  handleZipCodeChange = (e) =>{
     const {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue} = e;
     this.setState({
       [zipFieldName]: zipValue,
@@ -35,7 +32,7 @@ class Address extends React.Component {
   }
 
   // 處理郵遞區號不存在
-  handleZipCodeNotExists(e) {
+  handleZipCodeNotExists = (e) =>{
     const {countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, origZipValue} = e;
     this.setState({
       [zipFieldName]: zipValue,
