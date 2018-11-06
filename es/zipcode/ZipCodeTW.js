@@ -71,9 +71,9 @@ export default class ZipCodeTW extends React.Component {
       zipCode = RawData[county][district];
     }
 
-    const nowCountyFieldName = typeof (countyFieldName) != 'undefined' ? countyFieldName: 'county';
-    const nowDistrictFieldNam = typeof (districtFieldName) != 'undefined' ? districtFieldName: 'district';
-    const nowZipCodeFieldName = typeof (zipCodeFieldName) != 'undefined' ? zipCodeFieldName: 'zipCode';
+    const nowCountyFieldName = typeof (countyFieldName) != 'undefined' && countyFieldName !== '' ? countyFieldName: 'county';
+    const nowDistrictFieldNam = typeof (districtFieldName) != 'undefined' && districtFieldName !== '' ? districtFieldName: 'district';
+    const nowZipCodeFieldName = typeof (zipCodeFieldName) != 'undefined' && zipCodeFieldName !== '' ? zipCodeFieldName: 'zipCode';
 
     this.setState({
       county, district, zipCode,

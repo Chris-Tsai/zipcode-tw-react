@@ -7,7 +7,7 @@ import mockStore from "../config_test/mockStore";
 Enzyme.configure({adapter: new Adapter()});
 
 function setup(countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, zipCodePositionLast,
-    displayType, mockFn, mockFnD, mockFnZ, notExistsZ, mockBlur) {
+    displayType, mockFn, mockFnD, mockFnZ, notExistsZ, mockBlur, useClass, useStyle) {
   const store = mockStore({
     zipCodeTW: {
       countyFieldName: countyFieldName,
@@ -22,7 +22,16 @@ function setup(countyFieldName, countyValue, districtFieldName, districtValue, z
       handleChangeDistrict: mockFnD,
       handleChangeZipCode: mockFnZ,
       handleZipCodeNotExists: notExistsZ,
-      handleBlurZipCode: mockBlur
+      handleBlurZipCode: mockBlur,
+      countyClass: useClass,
+      districtClass: useClass,
+      zipClass: useClass,
+      countyStyle: useStyle,
+      districtStyle: useStyle,
+      zipStyle: useStyle,
+      addressClass: useClass,
+      addressStyle: useStyle
+
     }
   });
   const state = store.getState();
@@ -85,6 +94,34 @@ describe('ZipCodeTW test', () => {
     wrapper.find('input[name=\''+zipFieldName+'\']').simulate('blur', {target: {value: '999'} });
     expect(notExistsZ).toBeCalledWith({"countyFieldName": "zipName", "countyValue": "", "districtFieldName": "district", "districtValue": "", "zipFieldName": "zipCode", "zipValue": "", "origZipValue":"999"
     });
+  });
+
+  it('test displayType= text', () => {
+    const onChangeMock = jest.fn();
+    const onChangeMockD = jest.fn();
+    const onChangeMockZ = jest.fn();
+    const notExistsZ = jest.fn();
+    const onBlurMock = jest.fn();
+    const countyFieldName = '';
+    const countyValue = '';
+    const districtFieldName = '';
+    const districtValue = '';
+    const zipFieldName = '';
+    const zipValue = '';
+    const displayType = 'text';
+    const useClass = 'form-control';
+    const useStyle = {width:'100px'};
+    const zipCodePositionLast = false;
+    const {wrapper} = setup(countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue,
+        zipCodePositionLast, displayType, onChangeMock, onChangeMockD, onChangeMockZ, notExistsZ, onBlurMock, useClass, useStyle);
+    expect(wrapper.find('select[name=\'county\']').props().value).toEqual(countyValue);
+    expect(wrapper.find('select[name=\'county\']').hasClass('form-control')).toBe(true);
+
+    expect(wrapper.find('select[name=\'district\']').props().value).toEqual(districtValue);
+    expect(wrapper.find('select[name=\'district\']').hasClass('form-control')).toBe(true);
+
+    expect(wrapper.find('input[name=\'zipCode\']').props().value).toEqual(zipValue);
+    expect(wrapper.find('input[name=\'zipCode\']').hasClass('form-control')).toBe(true);
   });
 
   it('test displayType= display', () => {
