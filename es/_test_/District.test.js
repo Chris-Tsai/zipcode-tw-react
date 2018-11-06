@@ -44,6 +44,21 @@ describe('District test', () => {
     expect(onChangeMock).toBeCalledWith(changeValue);
   });
 
+  it('test displayType= text with no function', () => {
+    const onChangeMock = undefined;
+    const fieldName = 'district';
+    const value = '東區';
+    const changeValue = '西區';
+    const displayType = 'text';
+    const className = 'form-control';
+    const {wrapper} = setup(fieldName, value, className, displayType, onChangeMock);
+    expect(wrapper.find('select').props().value).toEqual(value);
+    expect(wrapper.find('select').props().name).toEqual(fieldName);
+    expect(wrapper.find('select').hasClass('form-control')).toBe(true);
+    expect(wrapper.find('span').exists()).toBe(false);
+    wrapper.find('select').simulate('change', {target: {value: changeValue} });
+  });
+
   it('test displayType= display', () => {
     const fieldName = 'district';
     const value = '東區';

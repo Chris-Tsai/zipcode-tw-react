@@ -48,6 +48,24 @@ describe('ZipCode test', () => {
     expect(onBlurMock).toBeCalledWith(changeValue);
   });
 
+  it('test displayType= text with no function', () => {
+    const onChangeMock = undefined;
+    const onBlurMock = undefined;
+    const fieldName = 'zipCode';
+    const value = '100';
+    const changeValue = '111';
+    const displayType = 'text';
+    const className = 'form-control';
+    const {wrapper} = setup(fieldName, value, className, displayType, onChangeMock, onBlurMock);
+    expect(wrapper.find('input').props().value).toEqual(value);
+    expect(wrapper.find('input').props().name).toEqual(fieldName);
+    expect(wrapper.find('input').hasClass('form-control')).toBe(true);
+    expect(wrapper.find('span').exists()).toBe(false);
+    wrapper.find('input').simulate('change', {target: {value: changeValue} });
+
+    wrapper.find('input').simulate('blur', {target: {value: changeValue} });
+  });
+
   it('test displayType= display', () => {
     const fieldName = 'zipCode';
     const value = '100';

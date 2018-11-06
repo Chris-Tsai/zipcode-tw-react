@@ -6,7 +6,8 @@ import mockStore from "../config_test/mockStore";
 
 Enzyme.configure({adapter: new Adapter()});
 
-function setup(countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, zipCodePositionLast, displayType, mockFn, mockBlur) {
+function setup(countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, zipCodePositionLast,
+    displayType, mockFn, mockFnD, mockFnZ, notExistsZ, mockBlur) {
   const store = mockStore({
     zipCodeTW: {
       countyFieldName: countyFieldName,
@@ -18,6 +19,9 @@ function setup(countyFieldName, countyValue, districtFieldName, districtValue, z
       zipCodePositionLast: zipCodePositionLast,
       displayType: displayType,
       handleChangeCounty: mockFn,
+      handleChangeDistrict: mockFnD,
+      handleChangeZipCode: mockFnZ,
+      handleZipCodeNotExists: notExistsZ,
       handleBlurZipCode: mockBlur
     }
   });
@@ -34,6 +38,9 @@ function setup(countyFieldName, countyValue, districtFieldName, districtValue, z
 describe('ZipCodeTW test', () => {
   it('test displayType= text', () => {
     const onChangeMock = jest.fn();
+    const onChangeMockD = jest.fn();
+    const onChangeMockZ = jest.fn();
+    const notExistsZ = jest.fn();
     const onBlurMock = jest.fn();
     const countyFieldName = 'zipName';
     const countyValue = '台北市';
@@ -42,9 +49,12 @@ describe('ZipCodeTW test', () => {
     const zipFieldName = 'zipCode';
     const zipValue = '100';
     const changeValue = '新北市';
+    const changeDistrictValue = '萬里區';
+    const changeZipValue = '207';
     const displayType = 'text';
     const zipCodePositionLast = false;
-    const {wrapper} = setup(countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, zipCodePositionLast, displayType, onChangeMock, onBlurMock);
+    const {wrapper} = setup(countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue,
+        zipCodePositionLast, displayType, onChangeMock, onChangeMockD, onChangeMockZ, notExistsZ, onBlurMock);
     expect(wrapper.find('select[name=\''+countyFieldName+'\']').props().value).toEqual(countyValue);
     expect(wrapper.find('select[name=\''+countyFieldName+'\']').props().name).toEqual(countyFieldName);
     expect(wrapper.find('select[name=\''+countyFieldName+'\']').hasClass('form-control')).toBe(true);
@@ -58,6 +68,22 @@ describe('ZipCodeTW test', () => {
     expect(wrapper.find('input[name=\''+zipFieldName+'\']').hasClass('form-control')).toBe(true);
     wrapper.find('select[name=\''+countyFieldName+'\']').simulate('change', {target: {value: changeValue} });
     expect(onChangeMock).toBeCalledWith({"countyFieldName": "zipName", "countyValue": "新北市", "districtFieldName": "district", "districtValue": "萬里區", "zipFieldName": "zipCode", "zipValue": "207"
+    });
+
+    wrapper.find('select[name=\''+districtFieldName+'\']').simulate('change', {target: {value: changeDistrictValue} });
+    expect(onChangeMockD).toBeCalledWith({"countyFieldName": "zipName", "countyValue": "新北市", "districtFieldName": "district", "districtValue": "萬里區", "zipFieldName": "zipCode", "zipValue": "207"
+    });
+
+    wrapper.find('input[name=\''+zipFieldName+'\']').simulate('change', {target: {value: changeZipValue} });
+    expect(onChangeMockZ).toBeCalledWith({"zipFieldName": "zipCode", "zipValue": "207"
+    });
+
+    wrapper.find('input[name=\''+zipFieldName+'\']').simulate('blur', {target: {value: changeZipValue} });
+    expect(onBlurMock).toBeCalledWith({"countyFieldName": "zipName", "countyValue": "新北市", "districtFieldName": "district", "districtValue": "萬里區", "zipFieldName": "zipCode", "zipValue": "207"
+    });
+
+    wrapper.find('input[name=\''+zipFieldName+'\']').simulate('blur', {target: {value: '999'} });
+    expect(notExistsZ).toBeCalledWith({"countyFieldName": "zipName", "countyValue": "", "districtFieldName": "district", "districtValue": "", "zipFieldName": "zipCode", "zipValue": "", "origZipValue":"999"
     });
   });
 

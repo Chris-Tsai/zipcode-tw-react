@@ -44,6 +44,21 @@ describe('County test', () => {
     expect(onChangeMock).toBeCalledWith(changeCountyValue);
   });
 
+  it('test displayType= text with no function', () => {
+    const onChangeMock = undefined;
+    const countyFieldName = 'zipName';
+    const countyValue = '台北市';
+    const changeCountyValue = '新北市';
+    const displayType = 'text';
+    const countyClass = 'form-control';
+    const {wrapper} = setup(countyFieldName, countyValue, countyClass, displayType, onChangeMock);
+    expect(wrapper.find('select').props().value).toEqual(countyValue);
+    expect(wrapper.find('select').props().name).toEqual(countyFieldName);
+    expect(wrapper.find('select').hasClass('form-control')).toBe(true);
+    expect(wrapper.find('span').exists()).toBe(false);
+    wrapper.find('select').simulate('change', {target: {value: changeCountyValue} });
+  });
+
   it('test displayType= display', () => {
     const countyFieldName = 'zipName';
     const countyValue = '台北市';
