@@ -9,7 +9,7 @@ $ npm install
 $ npm run build
 ```
 
-Open index.html and you will see
+Open `_example/index.html` and you will see
 
 ![pic](example.png)
 
@@ -37,6 +37,23 @@ Open index.html and you will see
          placeholder="輸入地址"
          style={{marginLeft:'5px', width: '300px', display: addressShow}}
          onChange={this.handleChange}
+  />
+</div>
+```
+
+#### Use zipCodePositionLast: false
+```javascript
+<div className="form-inline">
+  <ZipCodeTW displayType={this.state.displayType}
+             countyValue={this.state.county}
+             districtValue={this.state.district}
+             zipCodeValue={this.state.zipCode}
+             handleChangeCounty={this.handleZipCodeChange}
+             handleChangeDistrict={this.handleZipCodeChange}
+             handleChangeZipCode={this.handleZipCodeChange}
+             handleBlurZipCode={this.handleZipCodeChange}
+             handleZipCodeNotExists={this.handleZipCodeNotExists}
+             zipCodePositionLast={false}
   />
 </div>
 ```
