@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import es6BindAll from "es6bindall";
 import Address from "./js/Address";
 
 class ZipCodeTWTest extends React.Component {
 
   constructor() {
     super();
-    es6BindAll(this, []);
   }
 
   render() {

@@ -1,6 +1,5 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import es6BindAll from "es6bindall";
 
 /**
  * 郵遞區號
@@ -11,10 +10,9 @@ export default class ZipCode extends React.Component {
 
   constructor(props) {
     super(props);
-    es6BindAll(this, ['handleChange', 'handleBlur']);
   }
 
-  handleChange(e) {
+  handleChange = (e) =>{
     let value = e.target.value;
     let {onChange} = this.props;
     if((value == '' || /^\d+$/.test(value)) && value.length <= 3
@@ -23,7 +21,7 @@ export default class ZipCode extends React.Component {
     }
   }
 
-  handleBlur(e) {
+  handleBlur = (e) =>{
     let value = e.target.value;
     let {onBlur} = this.props;
     if(typeof (onBlur) == 'function'){

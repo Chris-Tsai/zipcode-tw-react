@@ -1,6 +1,5 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import es6BindAll from "es6bindall";
 
 /**
  * 行政區
@@ -11,10 +10,9 @@ export default class District extends React.Component {
 
   constructor(props) {
     super(props);
-    es6BindAll(this, ['handleChange']);
   }
 
-  handleChange(e) {
+  handleChange = (e) =>{
     let value = e.target.value;
     let {onChange} = this.props;
     if(typeof (onChange) == 'function'){
