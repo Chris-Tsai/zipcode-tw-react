@@ -20,7 +20,7 @@ or use package.json
 ```bash
 "dependencies": {
       ...
-    + "zipcode-tw-react": "^1.1.1",
+    + "zipcode-tw-react": "^1.1.2",
  },
 ```
 

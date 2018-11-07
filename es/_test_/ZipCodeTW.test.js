@@ -7,7 +7,8 @@ import mockStore from "../config_test/mockStore";
 Enzyme.configure({adapter: new Adapter()});
 
 function setup(countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, zipCodePositionLast,
-    displayType, mockFn, mockFnD, mockFnZ, notExistsZ, mockBlur, useClass, useStyle) {
+    displayType, mockFn, mockFnD, mockFnZ, notExistsZ, mockBlur, useClass,
+    useStyle, address, fullAddress) {
   const store = mockStore({
     zipCodeTW: {
       countyFieldName: countyFieldName,
@@ -30,7 +31,9 @@ function setup(countyFieldName, countyValue, districtFieldName, districtValue, z
       districtStyle: useStyle,
       zipStyle: useStyle,
       addressClass: useClass,
-      addressStyle: useStyle
+      addressStyle: useStyle,
+      address: address,
+      fullAddress: fullAddress
 
     }
   });
@@ -252,5 +255,41 @@ describe('ZipCodeTW test', () => {
     const zipCodePositionLast = undefined;
     const {wrapper} = setup(countyFieldName, countyValue, districtFieldName, districtValue, zipFieldName, zipValue, zipCodePositionLast, displayType);
     expect(wrapper.find('select[name=\''+countyFieldName+'\']').exists()).toBe(false);
+  });
+
+  it('test displayType= display with address', () => {
+    const countyFieldName = 'zipName';
+    const countyValue = '台北市';
+    const districtFieldName = 'district';
+    const districtValue = '中正區';
+    const zipFieldName = 'zipCode';
+    const zipValue = '100';
+    const displayType = 'display';
+    const zipCodePositionLast = undefined;
+    const {wrapper} = setup(countyFieldName, countyValue, districtFieldName,
+        districtValue, zipFieldName, zipValue,
+        zipCodePositionLast, displayType, undefined, undefined, undefined,
+        undefined, undefined, undefined, undefined, '中正路1號');
+    expect(
+        wrapper.find('select[name=\'' + countyFieldName + '\']').exists()).toBe(
+        false);
+  });
+
+  it('test displayType= display with fullAddress', () => {
+    const countyFieldName = 'zipName';
+    const countyValue = '台北市';
+    const districtFieldName = 'district';
+    const districtValue = '中正區';
+    const zipFieldName = 'zipCode';
+    const zipValue = '100';
+    const displayType = 'display';
+    const zipCodePositionLast = undefined;
+    const {wrapper} = setup(countyFieldName, countyValue, districtFieldName,
+        districtValue, zipFieldName, zipValue,
+        zipCodePositionLast, displayType, undefined, undefined, undefined,
+        undefined, undefined, undefined, undefined, undefined, '台北市中正區中正路1號');
+    expect(
+        wrapper.find('select[name=\'' + countyFieldName + '\']').exists()).toBe(
+        false);
   });
 });

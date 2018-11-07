@@ -1,15 +1,13 @@
 {
   "name": "zipcode-tw-react",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
   "dependencies": {
     "prop-types": "^15.5.8",
     "react": "^16.6.0",
-    "react-bootstrap": "^0.32.4",
-    "react-dom": "^16.6.0",
-    "sweetalert2": "^7.28.2"
+    "react-dom": "^16.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.36",
@@ -46,12 +44,12 @@
     "coveralls": "^3.0.2"
   },
   "scripts": {
-    "lint": "eslint ./es/**/*.js",
+    "lint": "check-node-version --package && eslint ./es/**/*.js",
     "test": "check-node-version --package && jest --coverage --coverageReporters=text-lcov | coveralls",
-    "build": "node ./scripts/build.js",
-    "start": "node ./scripts/start.js",
-    "compile": "./node_modules/.bin/babel es -d lib",
-    "release": "./node_modules/.bin/babel es -d lib && npm publish --access=public"
+    "build": "check-node-version --package && node ./scripts/build.js",
+    "start": "check-node-version --package && node ./scripts/start.js",
+    "compile": "check-node-version --package && ./node_modules/.bin/babel es -d lib",
+    "release": "check-node-version --package && ./node_modules/.bin/babel es -d lib && npm publish --access=public"
   },
   "jest": {
     "collectCoverageFrom": [
