@@ -44,12 +44,12 @@
     "coveralls": "^3.0.2"
   },
   "scripts": {
-    "lint": "check-node-version --package && eslint ./es/**/*.js",
+    "lint": "check-node-version --package && eslint ./es/zipcode/*.js",
     "test": "check-node-version --package && jest --coverage --coverageReporters=text-lcov | coveralls",
     "build": "check-node-version --package && node ./scripts/build.js",
     "start": "check-node-version --package && node ./scripts/start.js",
-    "compile": "check-node-version --package && ./node_modules/.bin/babel es -d lib",
-    "release": "check-node-version --package && ./node_modules/.bin/babel es -d lib && npm publish --access=public"
+    "compile": "./node_modules/.bin/babel es -d lib",
+    "release": "./node_modules/.bin/babel es -d lib && npm publish --access=public"
   },
   "jest": {
     "collectCoverageFrom": [
