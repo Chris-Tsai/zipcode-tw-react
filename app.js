@@ -51,6 +51,7 @@ class ZipCodeTWTest extends React.Component {
                        handleChangeDistrict={this.handleZipCodeChange}
                        handleChangeZipCode={this.handleZipCodeChange}
                        handleBlurZipCode={this.handleZipCodeChange}
+                       handleZipCodeNotExists={this.handleZipCodeChange}
             ></ZipCodeTW>
           </div>
         </div>
