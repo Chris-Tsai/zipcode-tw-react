@@ -3,7 +3,7 @@
 藉由RawData快速進行郵遞區號切換，並提供地址合併顯示。
 
 [![travis-ci Status](https://travis-ci.org/Chris-Tsai/zipcode-tw-react.svg?branch=master)](https://travis-ci.org/Chris-Tsai/zipcode-tw-react.svg?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/Chris-Tsai/zipcode-tw-react/badge.svg?branch=master&service=github)](https://coveralls.io/github/Chris-Tsai/zipcode-tw-react?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Chris-Tsai/zipcode-tw-react/badge.svg?branch=master)](https://coveralls.io/github/Chris-Tsai/zipcode-tw-react?branch=master)
 
 ## Demo
 Tyr it online: https://chris-tsai.github.io/
