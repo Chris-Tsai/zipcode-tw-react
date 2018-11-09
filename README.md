@@ -5,6 +5,13 @@
 [![travis-ci Status](https://travis-ci.org/Chris-Tsai/zipcode-tw-react.svg?branch=master)](https://travis-ci.org/Chris-Tsai/zipcode-tw-react.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/Chris-Tsai/zipcode-tw-react/badge.svg?branch=master&service=github)](https://coveralls.io/github/Chris-Tsai/zipcode-tw-react?branch=master)
 
+## Feature
+ - 挑選台灣縣市、行政區下拉選單，快速帶出郵遞區號。
+ - 輸入郵遞區號，快速帶出台灣縣市、行政區。
+ - 提供完整地址(fullAddress)或路段地址(address)欄位傳入，合併顯示郵遞區號及地址。
+ - 可自定義下拉選單、輸入欄位、地址顯示欄位的CSS, Style，達到畫面的一致性。
+
+
 ## Demo
 Tyr it online: https://chris-tsai.github.io/
 
