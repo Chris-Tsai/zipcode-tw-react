@@ -4,6 +4,8 @@
 
 [![travis-ci Status](https://travis-ci.org/Chris-Tsai/zipcode-tw-react.svg?branch=master)](https://travis-ci.org/Chris-Tsai/zipcode-tw-react.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/Chris-Tsai/zipcode-tw-react/badge.svg?branch=master&service=github)](https://coveralls.io/github/Chris-Tsai/zipcode-tw-react?branch=master)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/Chris-Tsai/zipcode-tw-react/blob/master/LICENSE)
+
 
 ## Feature
  - 挑選台灣縣市、行政區下拉選單，快速帶出郵遞區號。
