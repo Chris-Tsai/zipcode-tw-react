@@ -15,7 +15,7 @@
 
 
 ## Demo
-Tyr it online: https://chris-tsai.github.io/
+Try it online: https://chris-tsai.github.io/
 
 ![pic](demo.png)
 
