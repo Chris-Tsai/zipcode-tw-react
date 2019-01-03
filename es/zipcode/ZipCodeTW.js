@@ -4,6 +4,7 @@ import District from "./District";
 import County from "./County";
 import ZipCode from "./ZipCode";
 import RawData from '../data/RawData';
+import RawDataSort from '../data/RawDataSort';
 
 /**
  * 組合元件
@@ -52,8 +53,19 @@ export default class ZipCodeTW extends React.Component {
       zipCodeValue,
       countyFieldName,
       districtFieldName,
-      zipCodeFieldName
+      zipCodeFieldName,
+      countySort,
     } = this.props;
+    if(typeof countySort != 'undefined'){
+      counties.sort(function (a, b) {
+        return countySort[a] - countySort[b];
+      });
+    }else{
+      counties.sort(function (a, b) {
+        return RawDataSort[a] - RawDataSort[b];
+      });
+    }
+
     const county = (countyValue === '') ? counties[0] : countyValue;
     let district;
     let zipCode = typeof(zipCodeValue) == 'undefined' ?  '' : zipCodeValue;
@@ -186,7 +198,7 @@ export default class ZipCodeTW extends React.Component {
   }
 
   render() {
-    const {zipStyle, countyStyle, districtStyle, zipClass, countyClass, districtClass, displayType, zipCodePositionLast} = this.props;
+    const {zipStyle, countyStyle, districtStyle, zipClass, countyClass, districtClass, displayType, zipCodePositionLast, countySort} = this.props;
     const {fullAddress, address, addressClass, addressStyle} = this.props;
     const displayTypeFlag = (displayType === 'display') ? true : false;
     const nowZipCodePositionLast = typeof (zipCodePositionLast) != 'undefined' ? zipCodePositionLast : true;
@@ -203,7 +215,6 @@ export default class ZipCodeTW extends React.Component {
         typeof (zipClass) != 'undefined' ? zipClass: 'form-control';
     const nowAddressClass =
         typeof (addressClass) != 'undefined' ? addressClass: 'form-control';
-
 
     return (
         <>
@@ -288,4 +299,5 @@ ZipCodeTW.propTypes = {
   zipStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   addressClass: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
   addressStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.array, PropTypes.object]),
+  countySort: PropTypes.object,
 };

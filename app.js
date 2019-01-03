@@ -24,6 +24,30 @@ class ZipCodeTWTest extends React.Component {
   }
 
   render() {
+    let countySort = {
+      "基隆市": 2,
+      "台北市": 1,
+      "新北市": 3,
+      "桃園市": 4,
+      "新竹市": 5,
+      "新竹縣": 6,
+      "苗栗縣": 7,
+      "台中市": 8,
+      "彰化縣": 9,
+      "南投縣": 10,
+      "雲林縣": 11,
+      "嘉義市": 12,
+      "嘉義縣": 13,
+      "台南市": 14,
+      "高雄市": 15,
+      "屏東縣": 16,
+      "台東縣": 17,
+      "花蓮縣": 18,
+      "宜蘭縣": 19,
+      "澎湖縣": 20,
+      "金門縣": 21,
+      "連江縣": 22
+    };
     return (
         <div style={{width:'50%', margin: 'auto'}}>
           <h1> Example </h1>
@@ -52,6 +76,7 @@ class ZipCodeTWTest extends React.Component {
                        handleChangeZipCode={this.handleZipCodeChange}
                        handleBlurZipCode={this.handleZipCodeChange}
                        handleZipCodeNotExists={this.handleZipCodeChange}
+                       countySort={countySort}
             ></ZipCodeTW>
           </div>
         </div>

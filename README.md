@@ -9,6 +9,7 @@
 
 ## Feature
  - 挑選台灣縣市、行政區下拉選單，快速帶出郵遞區號。
+ - 可自定義台灣縣市下拉選單排序
  - 輸入郵遞區號，快速帶出台灣縣市、行政區。
  - 提供完整地址(fullAddress)或路段地址(address)欄位傳入，合併顯示郵遞區號及地址。
  - 可自定義下拉選單、輸入欄位、地址顯示欄位的CSS, Style，達到畫面的一致性。
@@ -29,7 +30,7 @@ or use package.json
 ```bash
 "dependencies": {
       ...
-    + "zipcode-tw-react": "^1.1.3",
+    + "zipcode-tw-react": "^1.2.0",
  },
 ```
 
@@ -51,6 +52,7 @@ Example : [zipcode-tw-react-example](https://github.com/Chris-Tsai/zipcode-tw-re
  Name | Type | Default | Description
 :--- | :--- | :--- | :---
 displayType| one of: 'text', 'display' | 'text' | displayType= display<br/>1. 以span顯示且包含readOnly & disabled屬性<br/>2. 提供fullAddress、address參數合併顯示郵遞區號及地址
+countySort| object | {"基隆市": 1, "台北市":2, "新北市":3, "桃園市":4, "新竹市":5, "新竹縣":6, "苗栗縣":7, "台中市":8, "彰化縣":9, "南投縣":10, "雲林縣":11, "嘉義市":12, "嘉義縣":13, "台南市":14, "高雄市":15, "屏東縣":16, "台東縣":17, "花蓮縣":18, "宜蘭縣":19, "澎湖縣":20, "金門縣":21, "連江縣":22}|
 zipCodePositionLast| bool | true| Decide zipCode input text position, <br/>when displayType= display, position is fixed 
 countyFieldName | string |'county' |
 countyValue | string | |
